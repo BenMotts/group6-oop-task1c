@@ -15,5 +15,5 @@ class Game
 		std::string name;
 		std::string description;
 		int cost;
-		int ageRating;
+		int ageRating2;
 };
