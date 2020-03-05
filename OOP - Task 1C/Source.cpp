@@ -9,7 +9,7 @@
 
 // TODO: Remove from global scope once menu system is integrated
 Application app;
-
+//ggggg
 void createHardcodedTestData()
 {
 	// Setup store with some games
