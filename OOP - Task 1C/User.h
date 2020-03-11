@@ -8,6 +8,7 @@ class User
 		User(const std::string&, const std::string&, const std::string&);
 		virtual ~User();
 		const std::string& GetUsername() const;
+		const bool CheckDetails(const std::string& username, const std::string& password) const;
 	private:
 		std::string username;
 		std::string password;
