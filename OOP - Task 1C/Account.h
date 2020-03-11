@@ -2,13 +2,15 @@
 
 #include <string>
 #include "Player.h"
+#include <vector>
 
 class Account
 {
 	public:
 		Account(const std::string&, const std::string&, const std::string&);
 		~Account();
-		User* users[3] = { }; // TODO: replace with custom List<T> class
+		std::vector<User*> users;
+		//User* users[3] = { }; // TODO: replace with custom List<T> class
 	private:
 		std::string email;
 		std::string password;
