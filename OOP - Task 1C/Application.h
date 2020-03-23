@@ -1,5 +1,6 @@
 #pragma once
 
+#include "List.h"
 #include "Account.h"
 #include "User.h"
 #include "Store.h"
@@ -20,10 +21,12 @@ class Application
 		bool LoginAccount(const std::string& email, const std::string& password);
 		bool LoginUser(const std::string& username, const std::string& password);
 		void LogoutUser();
-		
-		Account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
+		void AddAccount(Account* const&);
+		void AddUser(Player* const&);
+
 	private:
 		Store store;
 		Account* currentAccount;
 		User* currentUser;
+		List<Account*> accounts;
 };

@@ -37,14 +37,14 @@ void createHardcodedTestData()
 	u3->library[0] = new LibraryItem("2018-09-30", app.GetStore().games[6]);
 
 	// Make an account and attach the users
-	app.accounts[0] = new Account("alice@shu.com", "password", "2018-06-16");
+	app.AddAccount(new Account("alice@shu.com", "password", "2018-06-16"));
 	//TODO REPLACE PUSH BACK WITH CUSTOM LIST ADDITIONS
 	//app.accounts[0]->users[0] = u1;
 	//app.accounts[0]->users[1] = u2;
 	//app.accounts[0]->users[2] = u3;
-	app.accounts[0]->users.push_back(u1);
-	app.accounts[0]->users.push_back(u3);
-	app.accounts[0]->users.push_back(u2);
+	app.AddUser(u1);
+	app.AddUser(u3);
+	app.AddUser(u2);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.LoginAccount("alice@shu.ac.uk", "password");
