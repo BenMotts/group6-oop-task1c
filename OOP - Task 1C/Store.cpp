@@ -6,8 +6,13 @@ Store::Store()
 
 Store::~Store()
 {
-	for (int i = 0; i < 9; ++i)
-	{
-		delete games[i];
-	}
+	games.~List();
+}
+
+void Store::addGame(Game* game) {
+	games.addAtEnd(game);
+}
+
+Game* Store::getGame(const int& index) {
+	return games[index];
 }

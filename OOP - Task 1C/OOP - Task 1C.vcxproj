@@ -152,7 +152,6 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
-    <ClCompile Include="List.cpp" />
     <ClCompile Include="LoginMenu.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Menu.cpp" />

@@ -1,12 +1,18 @@
 #pragma once
 
 #include "Game.h"
+#include "List.h"
+#include <string>
 
 class Store
 {
 	public:
 		Store();
 		~Store();
-		Game* games[9] = { }; // TODO: should be a dynamic collection
+		void addGame(Game*);
+		Game* getGame(const int&);
+
 	private:
+		List<Game*> games;
+
 };

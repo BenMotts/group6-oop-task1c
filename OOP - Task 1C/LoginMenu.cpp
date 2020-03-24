@@ -9,8 +9,8 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 
 void LoginMenu::OutputOptions()
 {
-	for (int i(0); i < app->GetCurrentAccount()->users.size(); ++i) {
-		Option(i + 1, app->GetCurrentAccount()->users.at(i)->GetUsername());
+	for (int i(0); i < app->GetCurrentAccount()->users.length(); ++i) {
+		Option(i + 1, app->GetCurrentAccount()->users[i]->GetUsername());
 	}
 }
 
@@ -18,8 +18,8 @@ bool LoginMenu::HandleChoice(char choice)
 {
 	int index = choice - '1';
 
-	if (index >= 0 && index < app->GetCurrentAccount()->users.size()) {
-		if (app->LoginUser(app->GetCurrentAccount()->users.at(index)->GetUsername(), Question("Enter Password"))) {
+	if (index >= 0 && index < app->GetCurrentAccount()->users.length()) {
+		if (app->LoginUser(app->GetCurrentAccount()->users[index]->GetUsername(), Question("Enter Password"))) {
 			return true;
 		}
 		else {

@@ -2,7 +2,6 @@
 
 Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 {
-
 }
 
 Application::~Application()
@@ -45,9 +44,9 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: Update to algorythm to speed up login/decrease code amount
-	for (User* user : currentAccount->users) {
-		if (user->CheckDetails(username, password)) {
-			currentUser = user;
+	for (int i(0); i < currentAccount->users.length(); ++i) {
+		if (currentAccount->users[i]->CheckDetails(username, password)) {
+			currentUser = currentAccount->users[i];
 			return true;
 		}
 	}
@@ -61,8 +60,11 @@ void Application::LogoutUser()
 
 void Application::AddAccount(Account* const& acc) {
 	accounts.addAtEnd(acc);
+	if (currentAccount == nullptr)
+		currentAccount = acc;
 }
 
-void Application::AddUser(Player* const& player) {
-	currentAccount->users.push_back(player);
+void Application::AddUser(Player* const& player) 
+{
+	currentAccount->users.addAtEnd(player);
 }
