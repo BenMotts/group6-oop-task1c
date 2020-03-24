@@ -6,10 +6,7 @@ Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 
 Application::~Application()
 {
-	for (int i = 0; i < 1; ++i)
-	{
-		delete accounts[i];
-	}
+	accounts.~List();
 }
 
 bool Application::IsUserLoggedIn() const
@@ -41,16 +38,15 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 {
 	// TODO: This currently always logs you in as the first account
 	currentAccount = accounts[0];
-
 	return true;
 }
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: Update to algorythm to speed up login/decrease code amount
-	for (User* user : currentAccount->users) {
-		if (user->CheckDetails(username, password)) {
-			currentUser = user;
+	for (int i(0); i < currentAccount->users.length(); ++i) {
+		if (currentAccount->users[i]->CheckDetails(username, password)) {
+			currentUser = currentAccount->users[i];
 			return true;
 		}
 	}
@@ -60,4 +56,15 @@ bool Application::LoginUser(const std::string& username, const std::string& pass
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
+}
+
+void Application::AddAccount(Account* const& acc) {
+	accounts.addAtEnd(acc);
+	if (currentAccount == nullptr)
+		currentAccount = acc;
+}
+
+void Application::AddUser(Player* const& player) 
+{
+	currentAccount->users.addAtEnd(player);
 }
