@@ -1,10 +1,10 @@
 #pragma once
 #include "Menu.h"
-
-class LoginMenu : public Menu
+class ProfileMenu :
+	public Menu
 {
 public:
-	LoginMenu(const std::string& title, Application* app);
+	ProfileMenu(const std::string& title, Application* app);
 	void OutputOptions() final;
 	bool HandleChoice(char choice) final;
 };

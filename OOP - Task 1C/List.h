@@ -34,29 +34,30 @@ public:
 template <class T>
 class List
 {
-  public:
-    List();                                  // default constructor
-    List(const List<T>&);                    // copy constructor
-    List(const T&);                          // constructor to make a list from an item
-    ~List();                                 // destructor
-    List<T>& operator = (const List<T>&);    // copy assignment operator
-    bool operator == (const List<T>&) const; // compare with content of another list
-    bool isEmpty() const;                    // check if list is empty
-    const T first() const;                   // return first item (MUST be non-empty)
-    const T last() const;                    // return last item (MUST be non-empty)
+public:
+	List();                                  // default constructor
+	List(const List<T>&);                    // copy constructor
+	List(const T&);                          // constructor to make a list from an item
+	~List();                                 // destructor
+	List<T>& operator = (const List<T>&);    // copy assignment operator
+	bool operator == (const List<T>&) const; // compare with content of another list
+	bool isEmpty() const;                    // check if list is empty
+	const T first() const;                   // return first item (MUST be non-empty)
+	const T last() const;                    // return last item (MUST be non-empty)
 	T operator [](const int&);				 // Overload position operator for list iteration
+	T operator [](const int&) const;		 // As above, returns const values
 	const List<T> tail() const;              // return tail (MUST be non-empty)
-    void addInFront(const T&);               // insert an item in front
-    void addAtEnd(const T&);                 // insert an item at end
-    void deleteFirst();                      // delete first item (MUST be non-empty)
-    void deleteOne(const T&);                // delete first occurrence of item
-    int length() const;                      // return length
-    bool contains(const T&) const;           // check if an item is in list
-  private:
-    Node<T>* head;                           // point onto first item (nullptr if empty)
-    Node<T>* end() const;                    // return address of last item (nullptr if empty)
-    void destroy();                          // delete all items in list
-    void copy(const List<T>&);               // make a deep copy of the list
+	void addInFront(const T&);               // insert an item in front
+	void addAtEnd(const T&);                 // insert an item at end
+	void deleteFirst();                      // delete first item (MUST be non-empty)
+	void deleteOne(const T&);                // delete first occurrence of item
+	int length() const;                      // return length
+	bool contains(const T&) const;           // check if an item is in list
+private:
+	Node<T>* head;                           // point onto first item (nullptr if empty)
+	Node<T>* end() const;                    // return address of last item (nullptr if empty)
+	void destroy();                          // delete all items in list
+	void copy(const List<T>&);               // make a deep copy of the list
 };
 #include "List.h"
 
@@ -158,6 +159,15 @@ T List<T>::operator[](const int& pos)
 	return toReturn->item;
 }
 
+template<class T>
+T List<T>::operator[](const int& pos) const 
+{
+	assert(pos < length());
+	Node<T>* toReturn = head;
+	for (int i(0); i < pos; ++i)
+		toReturn = toReturn->next;
+	return toReturn->item;
+}
 
 template <class T>
 const List<T> List<T>::tail() const

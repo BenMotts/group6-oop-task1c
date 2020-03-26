@@ -32,7 +32,7 @@ bool MainMenu::HandleChoice(char choice)
 	{
 		if (app->IsUserLoggedIn())
 		{
-			std::string answer = Question("Are you sure?");
+			std::string answer = Question("Are you sure (Y / N)?");
 			if (answer == "y" || answer == "Y")
 			{
 				app->LogoutUser();
@@ -49,9 +49,7 @@ bool MainMenu::HandleChoice(char choice)
 	{
 		if (app->IsUserLoggedIn())
 		{
-			BlockingMessage("Not implemented, press return to continue");
-			// this needs to go to a profile page - similar to StoreMenu
-			// notice the if - this only works if somebody is logged in
+			ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
 		}
 	} break;
 	}

@@ -72,6 +72,9 @@
     <ClCompile Include="Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProfileMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="List.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfileMenu.h">
+      <Filter>Header Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

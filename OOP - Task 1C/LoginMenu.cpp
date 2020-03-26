@@ -27,6 +27,6 @@ bool LoginMenu::HandleChoice(char choice)
 			return false;
 		}
 	}
-	BlockingMessage("Invalid Option, Press Return To Retry");
+	BlockingMessage("Invalid Option, Press return to continue");
 	return false;
 }
