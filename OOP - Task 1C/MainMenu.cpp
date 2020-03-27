@@ -53,6 +53,5 @@ bool MainMenu::HandleChoice(char choice)
 		}
 	} break;
 	}
-
 	return false;
 }

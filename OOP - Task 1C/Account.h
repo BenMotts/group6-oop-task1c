@@ -11,6 +11,8 @@ class Account
 		Account(const std::string&, const std::string&, const Date&);
 		~Account();
 		List<User*> users;
+		bool usernameExists(const std::string&) const;
+		void AddUser(Player* const&);
 	private:
 		std::string email;
 		std::string password;

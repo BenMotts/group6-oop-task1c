@@ -12,3 +12,15 @@ Account::~Account()
 		delete users[i];
 	}
 }
+
+bool Account::usernameExists(const std::string& username) const {
+	for (int i(0); i < users.length(); ++i)
+		if (users[i]->GetUsername() == username)
+			return true;
+	return false;
+}
+
+void Account::AddUser(Player* const& player)
+{
+	users.addAtEnd(player);
+}

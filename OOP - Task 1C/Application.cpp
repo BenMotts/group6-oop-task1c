@@ -63,8 +63,3 @@ void Application::AddAccount(Account* const& acc) {
 	if (currentAccount == nullptr)
 		currentAccount = acc;
 }
-
-void Application::AddUser(Player* const& player) 
-{
-	currentAccount->users.addAtEnd(player);
-}

@@ -9,7 +9,8 @@ class User
 {
 public:
 	User(const std::string&, const std::string&, const Date&);
-	virtual ~User();
+
+	~User();
 	virtual LibraryItem* getLibraryItem(const int&) const = 0;
 	virtual int getLibrarySize() const = 0;
 	const std::string& GetUsername() const;

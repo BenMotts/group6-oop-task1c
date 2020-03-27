@@ -9,8 +9,8 @@ class Player : public User
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
 		void addGame(LibraryItem*);
-		LibraryItem* getLibraryItem(const int& index) const final;
-		int getLibrarySize() const final;
+		LibraryItem* getLibraryItem(const int& index) const override;
+		int getLibrarySize() const override;
 	private:
 		List<LibraryItem*> library;
 };
