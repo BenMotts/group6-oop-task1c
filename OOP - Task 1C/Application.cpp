@@ -36,17 +36,23 @@ Store& Application::GetStore()
 
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts[0];
-	return true;
+	//currentAccount = accounts[0];
+	//return false;
+	for (int i(0); i < accounts.length(); ++i) {
+		if (accounts[i]->CheckDetails(email, password)) {
+			currentAccount = accounts[i];
+			return false;
+		}
+	}
+	return false;
 }
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: Update to algorythm to speed up login/decrease code amount
-	for (int i(0); i < currentAccount->users.length(); ++i) {
-		if (currentAccount->users[i]->CheckDetails(username, password)) {
-			currentUser = currentAccount->users[i];
+	for (int i(0); i < currentAccount->GetUserCount(); ++i) {
+		if (currentAccount->GetUser(i)->CheckDetails(username, password)) {
+			currentUser = currentAccount->GetUser(i);
 			return true;
 		}
 	}
@@ -58,8 +64,15 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
+void Application::LogoutAccount() {
+	currentUser = nullptr;
+	currentAccount = nullptr;
+}
+
 void Application::AddAccount(Account* const& acc) {
 	accounts.addAtEnd(acc);
-	if (currentAccount == nullptr)
-		currentAccount = acc;
+}
+
+int Application::GetAccountCount() const {
+	return accounts.length();
 }

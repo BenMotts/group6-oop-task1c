@@ -1,7 +1,6 @@
 #include "ProfileMenu.h"
 
 
-
 ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(title, app)
 {
 	Paint();
@@ -9,7 +8,7 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 
 void ProfileMenu::OutputOptions() {
 	if (!app->GetCurrentUser()->getLibrarySize())
-		BlockingMessage("You have no games. Head to the store!/nPress return to continue");
+		BlockingMessage("You have no games. Head to the store!");
 	int optionNum = 0;
 	for (optionNum; optionNum < app->GetCurrentUser()->getLibrarySize(); ++optionNum) {
 		Option(optionNum + 1, app->GetCurrentUser()->getLibraryItem(optionNum)->game->GetName() + ", Play Time: 5 hours");
@@ -21,26 +20,28 @@ void ProfileMenu::OutputOptions() {
 	}
 }
 
-bool ProfileMenu::HandleChoice(char choice) {
+bool ProfileMenu::HandleChoice(const char& choice) {
 
 	int index = choice - '1';
 
 	if (index >= 0 && index < app->GetCurrentUser()->getLibrarySize() + 2) {
 		if (index < app->GetCurrentUser()->getLibrarySize())
 			BlockingMessage("To be implemented, add time to game");
-		else if (index == app->GetCurrentUser()->getLibrarySize()) {
-			std::string newUsername = Question("Enter Username");
-			if (app->GetCurrentAccount()->usernameExists(newUsername)) {
-				BlockingMessage("Username already exists. Press return to continue..");
-				return false;
+		if (dynamic_cast<Admin*>(app->GetCurrentUser())) { // If user is an admin
+			if (index == app->GetCurrentUser()->getLibrarySize()) {	// If user wants to add a new user
+				std::string newUsername = Question("Enter Username");
+				if (app->GetCurrentAccount()->usernameExists(newUsername) || !newUsername.size()) {
+					BlockingMessage("Username already exists");
+					return false;
+				}
+				else {
+					app->GetCurrentAccount()->AddUser(new Player(newUsername, Question("Enter Password"), Date()));
+					return true;
+				}
 			}
-			else {
-				app->GetCurrentAccount()->AddUser(new Player(newUsername, Question("Enter Password"), Date()));
-				return true;
-			}
+			else if (index == app->GetCurrentUser()->getLibrarySize() + 1)	// If user wants to delete a new user
+				DeleteUserMenu("DELETE USER", app);
 		}
-		else
-			BlockingMessage("To be implemented, delete user");
 	}
 	return false;
 }

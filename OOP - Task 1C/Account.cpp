@@ -13,6 +13,14 @@ Account::~Account()
 	}
 }
 
+User* Account::GetUser(const int& index) {
+	return users[index];
+}
+
+void Account::DeleteUser(User* const user) {
+	users.deleteOne(user);
+}
+
 bool Account::usernameExists(const std::string& username) const {
 	for (int i(0); i < users.length(); ++i)
 		if (users[i]->GetUsername() == username)
@@ -23,4 +31,12 @@ bool Account::usernameExists(const std::string& username) const {
 void Account::AddUser(Player* const& player)
 {
 	users.addAtEnd(player);
+}
+
+bool Account::CheckDetails(const std::string& email, const std::string& password) const {
+	return this->email == email && this->password == password;
+}
+
+int Account::GetUserCount() const {
+	return users.length();
 }

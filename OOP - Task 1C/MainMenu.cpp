@@ -9,18 +9,24 @@ void MainMenu::OutputOptions()
 {
 	Option('S', "Browse Store");
 
-	if (app->IsUserLoggedIn())
-	{
-		Option('P', "View Profile");
-		Option('L', "Logout of " + app->GetCurrentUser()->GetUsername());
+	if (app->IsAccountLoggedIn()) {
+		if (app->IsUserLoggedIn())
+		{
+			Option('P', "View Profile");
+			Option('L', "Logout of " + app->GetCurrentUser()->GetUsername());
+		}
+		else
+		{
+			Option('L', "Login User");
+			Option('Q', "Logout Account");
+		}
 	}
-	else
-	{
-		Option('L', "Login");
+	else {
+		Option('L', "Login Account");
 	}
 }
 
-bool MainMenu::HandleChoice(char choice)
+bool MainMenu::HandleChoice(const char& choice)
 {
 	switch (choice)
 	{
@@ -30,18 +36,12 @@ bool MainMenu::HandleChoice(char choice)
 	} break;
 	case 'L':
 	{
-		if (app->IsUserLoggedIn())
-		{
-			std::string answer = Question("Are you sure (Y / N)?");
-			if (answer == "y" || answer == "Y")
-			{
+		if (app->IsAccountLoggedIn() && app->IsUserLoggedIn()) {
+			if (DoubleCheckQuestion())
 				app->LogoutUser();
-			}
 		}
 		else
 		{
-			// this would need to go to a LoginMenu - similar to StoreMenu
-			// instead we just set logged in to true on the main app object
 			LoginMenu("LOGIN", app);
 		}
 	} break;
@@ -52,6 +52,12 @@ bool MainMenu::HandleChoice(char choice)
 			ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
 		}
 	} break;
+	case 'Q':
+	{
+		if (DoubleCheckQuestion())
+			app->LogoutAccount();
+		break;
+	}
 	}
 	return false;
 }

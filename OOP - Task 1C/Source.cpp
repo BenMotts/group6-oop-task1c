@@ -37,12 +37,12 @@ void createHardcodedTestData(Application &app)
 
 	// Make an account and attach the users
 	app.AddAccount(new Account("alice@shu.com", "password", Date()));
-	app.LoginAccount("alice@shu.ac.uk", "password");
+	app.LoginAccount("alice@shu.com", "password");
 	app.GetCurrentAccount()->AddUser(u1);
 	app.GetCurrentAccount()->AddUser(u2);
 	app.GetCurrentAccount()->AddUser(u3);
-
-	// TODO: We need a login menu for accounts, for now we log in the only account
+	app.LogoutAccount();
+	//app.LogoutAccount();
 }
 
 char showGameMenuAndGetUserChoice(Game* game, Application &app)

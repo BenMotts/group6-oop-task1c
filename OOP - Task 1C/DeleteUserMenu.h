@@ -1,10 +1,11 @@
 #pragma once
 #include "Menu.h"
+#include "Admin.h"
 
-class LoginMenu : public Menu
+class DeleteUserMenu : public Menu
 {
 public:
-	LoginMenu(const std::string& title, Application* app);
+	DeleteUserMenu(const std::string& title, Application* app);
 	void OutputOptions() final;
 	bool HandleChoice(const char& choice) final;
 };
