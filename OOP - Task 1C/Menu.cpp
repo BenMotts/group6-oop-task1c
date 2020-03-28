@@ -58,9 +58,19 @@ std::string Menu::Question(const std::string& question)
 	return Utils::getLineFromUser();
 }
 
+bool Menu::DoubleCheckQuestion() const {
+	std::cout << "  Are you sure (Y / N): ";
+	return toupper(Utils::getCharFromUser()) == 'Y';
+}
+
+void Menu::PrintLine(const std::string& message) {
+	std::cout << "\n  " << message << "\n";
+}
+
 void Menu::BlockingMessage(const std::string& message)
 {
 	std::cout << "  " << message;
+	std::cout << "\n  Press Return To Continue";
 	Utils::getLineFromUser();
 }
 

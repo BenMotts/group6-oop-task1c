@@ -3,15 +3,22 @@
 #include <string>
 #include "Player.h"
 #include "List.h"
+#include "Date.h"
 
 class Account
 {
 	public:
-		Account(const std::string&, const std::string&, const std::string&);
+		Account(const std::string&, const std::string&, const Date&);
 		~Account();
-		List<User*> users;
+		bool usernameExists(const std::string&) const;
+		bool CheckDetails(const std::string&, const std::string&) const;
+		void AddUser(Player* const&);
+		User* GetUser(const int&);
+		int GetUserCount() const;
+		void DeleteUser(User* const);
 	private:
+		List<User*> users;
 		std::string email;
 		std::string password;
-		std::string created;  // TODO: replace with custom Date class, currently YYYY-MM-DD
+		Date created;  // TODO: replace with custom Date class, currently YYYY-MM-DD
 };

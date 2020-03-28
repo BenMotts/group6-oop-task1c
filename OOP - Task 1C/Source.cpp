@@ -23,26 +23,26 @@ void createHardcodedTestData(Application &app)
 	app.GetStore().addGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
-	Player* u1 = new Admin("Alice", "password", "2018-06-16");
-	Player* u2 = new Player("Bob", "password", "2018-09-19");
-	Player* u3 = new Player("Charlie", "password", "2018-09-24");
+	Player* u1 = new Admin("Alice", "password", Date());
+	Player* u2 = new Player("Bob", "password",  Date());
+	Player* u3 = new Player("Charlie", "password", Date());
 
 	// With some games in their library
-	u1->library.addAtEnd(new LibraryItem("2018-06-17", app.GetStore().getGame(7)));
-	u1->library.addAtEnd(new LibraryItem("2018-06-18", app.GetStore().getGame(1)));
-	u2->library.addAtEnd(new LibraryItem("2018-09-19", app.GetStore().getGame(2)));
-	u2->library.addAtEnd(new LibraryItem("2018-09-19", app.GetStore().getGame(3)));
-	u3->library.addAtEnd(new LibraryItem("2018-09-24", app.GetStore().getGame(3)));
-	u3->library.addAtEnd(new LibraryItem("2018-09-30", app.GetStore().getGame(6)));
+	u1->addGame(new LibraryItem(Date(), app.GetStore().getGame(7)));
+	u1->addGame(new LibraryItem(Date(), app.GetStore().getGame(1)));
+	u2->addGame(new LibraryItem(Date(), app.GetStore().getGame(2)));
+	u2->addGame(new LibraryItem(Date(), app.GetStore().getGame(3)));
+	u3->addGame(new LibraryItem(Date(), app.GetStore().getGame(3)));
+	u3->addGame(new LibraryItem(Date(), app.GetStore().getGame(6)));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.com", "password", "2018-06-16"));
-	app.AddUser(u1);
-	app.AddUser(u3);
-	app.AddUser(u2);
-
-	// TODO: We need a login menu for accounts, for now we log in the only account
-	app.LoginAccount("alice@shu.ac.uk", "password");
+	app.AddAccount(new Account("alice@shu.com", "password", Date()));
+	app.LoginAccount("alice@shu.com", "password");
+	app.GetCurrentAccount()->AddUser(u1);
+	app.GetCurrentAccount()->AddUser(u2);
+	app.GetCurrentAccount()->AddUser(u3);
+	app.LogoutAccount();
+	//app.LogoutAccount();
 }
 
 char showGameMenuAndGetUserChoice(Game* game, Application &app)

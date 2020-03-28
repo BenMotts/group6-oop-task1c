@@ -14,7 +14,7 @@ void StoreMenu::OutputOptions()
 	}
 }
 
-bool StoreMenu::HandleChoice(char choice)
+bool StoreMenu::HandleChoice(const char& choice)
 {
 	// since we are using numbers here we shift the char down by '1'
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
@@ -23,7 +23,7 @@ bool StoreMenu::HandleChoice(char choice)
 
 	if (index >= 0 && index < games.size())
 	{
-		BlockingMessage("Not implemented, press return to continue");
+		BlockingMessage("Not implemented");
 		// go to game detail page
 	}
 
