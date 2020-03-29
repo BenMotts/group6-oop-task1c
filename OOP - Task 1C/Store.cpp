@@ -9,10 +9,14 @@ Store::~Store()
 	games.~List();
 }
 
-void Store::addGame(Game* game) {
+void Store::AddGame(Game* game) {
 	games.addAtEnd(game);
 }
 
-Game* Store::getGame(const int& index) {
+Game* Store::GetGame(const int& index) {
 	return games[index];
+}
+
+int Store::GetGameCount() const {
+	return games.length();
 }
