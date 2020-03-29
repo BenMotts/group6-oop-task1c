@@ -65,4 +65,5 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		}
 		return false;
 	}
+	return false;
 }
