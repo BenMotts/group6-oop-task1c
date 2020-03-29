@@ -8,9 +8,16 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
-		void addGame(LibraryItem*);
-		LibraryItem* getLibraryItem(const int& index) const override;
-		int getLibrarySize() const override;
+		void AddGame(LibraryItem*) override;
+		LibraryItem* GetLibraryItem(const int& index) const override;
+		int GetLibrarySize() const override;
+		bool HasGame(const Game* game) const override;
+		bool HasEnoughCredits(const int& amt) const override;
+		int GetCredits() const override;
+		void SpendCredits(const int& amt) override;
+		void AddCredits(const int& amt) override;
+
 	private:
 		List<LibraryItem*> library;
+		int credits;
 };

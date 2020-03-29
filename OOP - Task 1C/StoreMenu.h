@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Menu.h"
+#include "PurchaseGameMenu.h"
 
 #include <string>
 #include <vector>
@@ -11,6 +12,4 @@ public:
 	StoreMenu(const std::string& title, Application * app);
 	void OutputOptions() final;
 	bool HandleChoice(const char& choice) final;
-private:
-	std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
 };

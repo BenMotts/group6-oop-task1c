@@ -9,10 +9,10 @@ class Store
 	public:
 		Store();
 		~Store();
-		void addGame(Game*);
-		Game* getGame(const int&);
+		void AddGame(Game*);
+		Game* GetGame(const int&);
+		int GetGameCount() const;
 
 	private:
 		List<Game*> games;
-
 };

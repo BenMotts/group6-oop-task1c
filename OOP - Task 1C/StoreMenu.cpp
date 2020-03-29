@@ -7,10 +7,9 @@ StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, 
 
 void StoreMenu::OutputOptions()
 {
-	for (int i = 0; i < games.size(); i++)
+	for (int i = 0; i < app->GetStore().GetGameCount(); i++)
 	{
-		// adding 1 so the display is nicer for the user
-		Option(i + 1, games[i]);
+		Option(i + 1, app->GetStore().GetGame(i)->GetName());
 	}
 }
 
@@ -21,10 +20,9 @@ bool StoreMenu::HandleChoice(const char& choice)
 	// this reverses the + 1 above and lets us do the range check below
 	int index = choice - '1';
 
-	if (index >= 0 && index < games.size())
-	{
-		BlockingMessage("Not implemented");
-		// go to game detail page
+	if (index >= 0 && index < app->GetStore().GetGameCount()) {
+		Game* gamePointer = app->GetStore().GetGame(index);
+		PurchaseGameMenu(gamePointer, gamePointer->GetName(), app);
 	}
 
 	return false;
