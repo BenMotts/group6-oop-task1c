@@ -20,7 +20,7 @@ void ProfileMenu::OutputOptions() {
 		}
 	}
 	if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
-		Line();
+		PrintLine("Admin Tools");
 		Option('A', "Add User");
 		Option('D', "Delete User");
 	}
