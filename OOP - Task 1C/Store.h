@@ -15,4 +15,5 @@ class Store
 
 	private:
 		List<Game*> games;
+		//TODO search store
 };
