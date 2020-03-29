@@ -45,12 +45,8 @@ std::string Utils::ToUpper(std::string text) {
 	return text;
 }
 
-//TODO does not work properly, come back to fix
 std::string Utils::ToUpperRec(std::string text) {
 	if (!text.length())
-		return text;
-	if (islower(text[0])) {
-		return (char)toupper(text[0]) + ToUpperRec(text.substr(1));
-	}
-	return ToUpperRec(text.substr(1));
+		return "";
+	return (char)toupper(text[0]) + ToUpperRec(text.substr(1));
 }

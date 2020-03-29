@@ -3,7 +3,7 @@
 
 
 PurchaseGameMenu::PurchaseGameMenu(const Game* game, const std::string& title, Application* app)
-	: game(game), Menu(Utils::ToUpper(title), app)
+	: game(game), Menu(Utils::ToUpperRec(title), app)
 {
 	Paint();
 }
