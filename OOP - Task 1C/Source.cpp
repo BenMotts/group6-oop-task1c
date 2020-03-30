@@ -54,5 +54,6 @@ void main()
 
 	//mainMenu(); // TODO: replace with proper menu system
 	MainMenu("MAIN MENU", &app);
+
 	// TODO: app.Save();
 }
