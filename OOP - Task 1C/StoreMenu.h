@@ -17,4 +17,5 @@ public:
 
 private:
 	List<Game*> games;
+	bool searchView;
 };

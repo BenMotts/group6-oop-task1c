@@ -1,23 +1,27 @@
 #include "StoreMenu.h"
 
-StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
+StoreMenu::StoreMenu(const std::string& title, Application * app) : searchView(false), Menu(title, app)
 {
 	Paint(); // required in constructor
 }
 
-StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> games) : games(games), Menu(title, app)
+StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> games) : searchView(true), games(games), Menu(title, app)
 {
 	Paint(); // required in constructor
 }
 
 void StoreMenu::OutputOptions()
 {
-	if (games.length())
+	if (!games.isEmpty() && searchView)
 		for (int i(0); i < games.length(); ++i)
 			Option(i + 1, games[i]->GetName());
+	else if (searchView)
+		PrintLine("No Results Matching Your Criteria");
 	else
 		for (int i = 0; i < app->GetStore().GetGameCount(); i++)
 			Option(i + 1, app->GetStore().GetGame(i)->GetName());
+		/*else if (!games.length())
+	PrintLine("No Results Matching Your Criteria");*/
 
 	Line();
 
@@ -49,7 +53,7 @@ bool StoreMenu::HandleChoice(const char& choice)
 
 		int index = choice - '1';
 
-		if (games.length() && index >= 0 && index < games.length()) {
+		if (!games.isEmpty() && index >= 0 && index < games.length()) {
 			Game* gamePointer = games[index];
 			PurchaseGameMenu(gamePointer, gamePointer->GetName(), app);
 		} else if (index >= 0 && index < app->GetStore().GetGameCount()) {
