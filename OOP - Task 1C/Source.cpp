@@ -6,10 +6,10 @@
 #include "Player.h"
 #include "Admin.h"
 #include "Utils.h"
-
+//test comment again
 // TODO: Remove from global scope once menu system is integrated
 Application app;
-//ggggg
+
 void createHardcodedTestData()
 {
 	// Setup store with some games
