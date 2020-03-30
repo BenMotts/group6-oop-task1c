@@ -34,7 +34,7 @@ bool Utils::StartsWith(const std::string& fullText, const std::string& searchTex
 	return true;
 }
 
-bool Utils::WithinRange(const int& cost, const int& upper, const int& lower) {
+bool Utils::WithinRange(const int& cost, const int& lower, const int& upper) {
 	return cost >= lower && cost <= upper;
 }
 

@@ -60,8 +60,7 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		int index = choice - '1';
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
-			if (index < app->GetCurrentUser()->GetLibrarySize())
-				BlockingMessage("To be implemented, add time to game");
+			BlockingMessage("To be implemented, add time to game");
 		}
 		return false;
 	}
