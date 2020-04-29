@@ -16,7 +16,7 @@ void ProfileMenu::OutputOptions() {
 	else {
 		PrintLine("Play Games");
 		for (int i(0); i < app->GetCurrentUser()->GetLibrarySize(); ++i) {
-			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: 5 hours");
+			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: "  + app->GetCurrentUser()->GetLibraryItem(i)->GetTimePlayed());
 		}
 	}
 	if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
@@ -40,7 +40,7 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 			return false;
 		}
 	}
-	else if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
+	else if (dynamic_cast<Admin*>(app->GetCurrentUser()) && (choice=='A' || choice == 'D')) {
 		if (choice == 'A') {
 			std::string newUsername = Question("Enter Username");
 			if (app->GetCurrentAccount()->usernameExists(newUsername) || !newUsername.size()) {
@@ -60,7 +60,7 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		int index = choice - '1';
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
-			BlockingMessage("To be implemented, add time to game");
+			app->GetCurrentUser()->GetLibraryItem(index)->playGame();
 		}
 		return false;
 	}

@@ -16,5 +16,7 @@ class Utils
 	static std::string ToUpperRec(std::string);
 	static bool StartsWith(const std::string&, const std::string&);
 	static bool WithinRange(const int&, const int&, const int&);
+	static int RandomNumberGenerator(const int&, const int&);
+	static std::string formatTime(const int&);
     // TODO: 2 versions of ToUpper
 };

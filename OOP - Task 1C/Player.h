@@ -17,6 +17,8 @@ class Player : public User
 		void SpendCredits(const int& amt) override;
 		void AddCredits(const int& amt) override;
 
+		bool isPlaying(const Game* game);
+
 	private:
 		List<LibraryItem*> library;
 		int credits;
