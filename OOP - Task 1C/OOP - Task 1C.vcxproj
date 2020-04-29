@@ -152,6 +152,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="User.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="PlayGame.h" />
     <ClInclude Include="LibraryItem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Store.h" />

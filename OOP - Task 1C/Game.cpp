@@ -1,5 +1,5 @@
 #include "Game.h"
-
+//some edits
 Game::Game(const std::string& name, const std::string& desc, int cost, int rating)
 	: name(name), description(desc), cost(cost), ageRating(rating)
 {
