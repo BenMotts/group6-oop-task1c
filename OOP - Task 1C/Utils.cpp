@@ -1,5 +1,5 @@
 #include "Utils.h"
-
+//TEST
 std::string Utils::getLineFromUser()
 {
 	std::string input;
