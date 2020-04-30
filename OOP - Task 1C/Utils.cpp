@@ -66,10 +66,10 @@ std::string Utils::formatTime(const int& number) {
 	else if (number >= 60 && number <300) {
 		os << std::fixed << std::setprecision(1) << (number / 60.0f) << " hours";
 	}
-	else if(number>=300 && number<1440){
+	else if(number>=300 && number<2880){
 		os << (number / 60) << " hours";
 	}
-	else if (number >= 14400) {
+	else if (number >= 2880) {
 		os << (number / 60 / 24) << " days";
 	}
 	
