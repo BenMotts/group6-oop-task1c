@@ -8,7 +8,8 @@ class LibraryItem
 	public:
 		LibraryItem(const Date&, const Game*);
 		~LibraryItem();
-		const Game *game;
+		Date getDatePurchased() const;
+		const Game* game;
 
 	private:
 		const Date purchased;

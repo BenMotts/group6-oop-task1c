@@ -4,6 +4,8 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include "Date.h"
+#include "LibraryItem.h"
 
 class Utils
 {
@@ -16,5 +18,7 @@ class Utils
 	static std::string ToUpperRec(std::string);
 	static bool StartsWith(const std::string&, const std::string&);
 	static bool WithinRange(const int&, const int&, const int&);
-    // TODO: 2 versions of ToUpper
+	static bool IsDateBefore(const Date&, const Date&);
+	static bool PurchasedAfter(const LibraryItem*, const LibraryItem*);
+	static bool CompareLibraryItemNames(const LibraryItem*, const LibraryItem*);
 };

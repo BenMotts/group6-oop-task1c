@@ -20,6 +20,9 @@ public:
 	virtual void AddGame(LibraryItem* game) = 0;
 	const std::string& GetUsername() const;
 	const bool CheckDetails(const std::string& username, const std::string& password) const;
+	virtual void OrderGamesByDate() = 0;
+	virtual void OrderGamesByName() = 0;
+
 private:
 	std::string username;
 	std::string password;

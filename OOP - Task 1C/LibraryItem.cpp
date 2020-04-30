@@ -8,3 +8,7 @@ LibraryItem::LibraryItem(const Date& date, const Game* game)
 LibraryItem::~LibraryItem()
 {
 }
+
+Date LibraryItem::getDatePurchased() const {
+	return purchased;
+}

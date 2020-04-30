@@ -1,5 +1,5 @@
 #include "Utils.h"
-//TEST
+
 std::string Utils::getLineFromUser()
 {
 	std::string input;
@@ -49,4 +49,16 @@ std::string Utils::ToUpperRec(std::string text) {
 	if (!text.length())
 		return "";
 	return (char)toupper(text[0]) + ToUpperRec(text.substr(1));
+}
+
+bool Utils::IsDateBefore(const Date& d1, const Date& d2) {
+	return d1 < d2;
+}
+
+bool Utils::PurchasedAfter(const LibraryItem* l1 , const LibraryItem* l2) {
+	return !IsDateBefore(l1->getDatePurchased(), l2->getDatePurchased());
+}
+
+bool Utils::CompareLibraryItemNames(const LibraryItem* l1, const LibraryItem* l2) {
+	return l1->game->GetName() < l2->game->GetName();
 }
