@@ -1,0 +1,9 @@
+"The Witness", "Explore a nice island and solve puzzles.", 2999, 5 end
+"Braid", "A time twisting puzzle game.", 499, 15 end
+"Factorio", "Build a complicated factory in space.", 1599, 12 end
+"LIMBO", "Watch out for that spider.", 299, 12 end
+"INSIDE", "What are those scientists even doing?!", 1299, 15 end
+"Portal 2", "Play around with physics. Shoot the moon.", 1999, 15 end
+"Half Life 3", "It's never coming out.", 5999, 18 end
+"NUVAVULT", "A game where 2D and 3D collide.", 299, 18 end
+"Brothers", "Split your brain into two thumbs.", 799, 15 end

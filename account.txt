@@ -1,0 +1,3 @@
+Admin Alice password 
+Player Bob password 
+Player Charlie	password 

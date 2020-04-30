@@ -7,7 +7,8 @@
 #include "Admin.h"
 #include "Utils.h"
 #include "MainMenu.h"
-
+#include <fstream>
+using namespace std;
 // TODO: Remove from global scope once menu system is integrated
 void createHardcodedTestData(Application &app)
 {
@@ -56,4 +57,83 @@ void main()
 	MainMenu("MAIN MENU", &app);
 
 	// TODO: app.Save();
+
+	int counter=0,build=0,object=0;
+	fstream file;
+	string filename="account.txt";
+	string game, text, price, rating, word;
+	string player, name, password,memory;
+	file.open(filename.c_str());
+	while (file >> word)
+	{	
+		build = 0;
+		counter++;
+
+		if (counter == 1)
+		{
+			player = word;
+		}
+		
+		if (counter == 2)
+		{
+			name = word;
+		}
+		
+		if (counter == 3)
+		{
+			password = word;
+			counter = 0;
+			build = 1;
+		}
+		
+		if (build == 1)
+		{
+			if (player == "Player")
+			{	
+				if (object == 0)
+				{
+					Player* u2 = new Player(name, password, Date());
+					object++;
+				}
+				if (object==1)
+				{
+					Player* u3 = new Player(name, password, Date());
+				}
+			}
+			if (player == "Admin")
+			{
+				Player* u1 = new Admin(name, password, Date());
+			}
+		}
+		
+	}
+	file.close();
+	filename = "user.txt";
+	file.open(filename.c_str());
+	counter = 0;
+		while (file >> word)
+		{
+			if (counter==0)
+			{
+				name = word;
+			}
+			if (counter==1)
+			{
+				password = word;
+				app.AddAccount(new Account(name, password, Date()));
+				app.LoginAccount(name, password);
+				app.GetCurrentAccount()->AddUser(u1);
+				app.GetCurrentAccount()->AddUser(u2);
+				app.GetCurrentAccount()->AddUser(u3);
+				app.LogoutAccount();
+			}
+			counter++;
+
+		}
+	
+
+
+
+
+
 }
