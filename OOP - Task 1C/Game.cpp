@@ -23,3 +23,15 @@ int Game::GetCost() const
 {
 	return cost;
 }
+
+int Game::getLikeRating() const {
+	return (100 / (likes + dislikes)) * likes;
+}
+
+void Game::likeGame() {
+	likes++;
+}
+
+void Game::dislikeGame() {
+	dislikes++;
+}

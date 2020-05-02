@@ -21,4 +21,6 @@ class Utils
 	static bool IsDateBefore(const Date&, const Date&);
 	static bool PurchasedAfter(const LibraryItem*, const LibraryItem*);
 	static bool CompareLibraryItemNames(const LibraryItem*, const LibraryItem*);
+	static bool CompareGameRatings(const Game*, const Game*);
+	static bool CompareGameNames(const Game*, const Game*);
 };
