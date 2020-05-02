@@ -7,11 +7,10 @@ Player::Player(const std::string& username, const std::string& password, const D
 
 Player::~Player()
 {
-	library.~List();
 }
 
 void Player::AddGame(LibraryItem* item) {
-	library.addAtEnd(item);
+	library.push_back(item);
 }
 
 LibraryItem* Player::GetLibraryItem(const int& index) const {
@@ -19,17 +18,18 @@ LibraryItem* Player::GetLibraryItem(const int& index) const {
 }
 
 bool Player::HasGame(const Game* game) const {
-	for (int i(0); i < library.length(); ++i)
+	for (int i(0); i < library.size(); ++i)
 		if (library[i]->game == game)
 			return true;
 	return false;
 }
 
 int Player::GetLibrarySize() const {
-	return library.length();
+	return library.size();
 }
 
 bool Player::HasEnoughCredits(const int& amt) const {
+	assert(amt >= 0);
 	return (credits - amt >= 0);
 }
 
@@ -45,4 +45,13 @@ void Player::SpendCredits(const int& amt) {
 void Player::AddCredits(const int& amt) {
 	if (amt > 0)
 		credits += amt;
+}
+
+void Player::OrderGamesByDate() {
+	std::sort(library.begin(), library.end(), Utils::PurchasedAfter);
+}
+
+
+void Player::OrderGamesByName() {
+	std::sort(library.begin(), library.end(), Utils::CompareLibraryItemNames);
 }

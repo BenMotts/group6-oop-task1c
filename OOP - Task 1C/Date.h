@@ -15,5 +15,9 @@ public:
 	const static Date CurrentDate();
 	bool setDate(const int&, const int&, const int&);
 	std::string printDate() const;
+	bool operator < (const Date&) const;
+	int getDay() const;
+	int getMonth() const;
+	int getYear() const;
 };
 

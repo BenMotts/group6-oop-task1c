@@ -50,3 +50,23 @@ std::string Utils::ToUpperRec(std::string text) {
 		return "";
 	return (char)toupper(text[0]) + ToUpperRec(text.substr(1));
 }
+
+bool Utils::IsDateBefore(const Date& d1, const Date& d2) {
+	return d1 < d2;
+}
+
+bool Utils::PurchasedAfter(const LibraryItem* l1 , const LibraryItem* l2) {
+	return !IsDateBefore(l1->getDatePurchased(), l2->getDatePurchased());
+}
+
+bool Utils::CompareLibraryItemNames(const LibraryItem* l1, const LibraryItem* l2) {
+	return CompareGameNames(l1->game, l2->game);
+}
+
+bool Utils::CompareGameRatings(const Game* g1, const Game* g2) {
+	return g1->getLikeRating() > g2->getLikeRating();
+}
+
+bool Utils::CompareGameNames(const Game* g1, const Game* g2) {
+	return g1->GetName() < g2->GetName();
+}

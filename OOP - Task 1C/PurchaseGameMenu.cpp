@@ -11,6 +11,7 @@ PurchaseGameMenu::PurchaseGameMenu(const Game* game, const std::string& title, A
 void PurchaseGameMenu::OutputOptions() {
 	PrintLine(game->GetDescription());
 	PrintLine("Cost: " + Utils::formatCredits(game->GetCost()));
+	PrintLine("Rating: " + game->getLikeRating());
 	if (!app->IsUserLoggedIn())
 		PrintLine("Log In To Purchase");
 	else if (app->GetCurrentUser()->HasGame(game))

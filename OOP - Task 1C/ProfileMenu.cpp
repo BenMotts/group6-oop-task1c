@@ -18,6 +18,9 @@ void ProfileMenu::OutputOptions() {
 		for (int i(0); i < app->GetCurrentUser()->GetLibrarySize(); ++i) {
 			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: 5 hours");
 		}
+		Line();
+		Option('T', "Sort Games By Date Purchased");
+		Option('N', "Sort Games By Name");
 	}
 	if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
 		PrintLine("Admin Tools");
@@ -40,7 +43,17 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 			return false;
 		}
 	}
-	else if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
+	else if (choice == 'T') {
+		app->GetCurrentUser()->OrderGamesByDate();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
+	}
+	else if (choice == 'N') {
+		app->GetCurrentUser()->OrderGamesByName();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
+	}
+	else if (dynamic_cast<Admin*>(app->GetCurrentUser()) && (choice == 'A' || choice == 'D')) {
 		if (choice == 'A') {
 			std::string newUsername = Question("Enter Username");
 			if (app->GetCurrentAccount()->usernameExists(newUsername) || !newUsername.size()) {
