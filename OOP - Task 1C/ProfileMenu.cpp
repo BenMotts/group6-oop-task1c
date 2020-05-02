@@ -11,7 +11,7 @@ void ProfileMenu::OutputOptions() {
 	PrintLine("Credits: " + Utils::formatCredits(app->GetCurrentUser()->GetCredits()));
 	Option('C', "Add Credits");
 
-	if (!app->GetCurrentUser()->GetLibrarySize())
+	if (!app->GetCurrentUser()->HasGames())
 		PrintLine("You have no games. Head to the store!");
 	else {
 		PrintLine("Play Games");
@@ -43,12 +43,12 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 			return false;
 		}
 	}
-	else if (choice == 'T') {
+	else if (choice == 'T' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByDate();
 		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
 		return true;
 	}
-	else if (choice == 'N') {
+	else if (choice == 'N' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByName();
 		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
 		return true;
@@ -73,7 +73,8 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		int index = choice - '1';
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
-			BlockingMessage("To be implemented, add time to game");
+			//BlockingMessage("To be implemented, add time to game");
+			GameOptionsMenu(app->GetCurrentUser()->GetLibraryItem(index), app->GetCurrentUser()->GetLibraryItem(index)->getName(), app);
 		}
 		return false;
 	}

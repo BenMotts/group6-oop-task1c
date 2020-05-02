@@ -16,6 +16,7 @@ class Player : public User
 		LibraryItem* GetLibraryItem(const int& index) const override;
 		int GetLibrarySize() const override;
 		bool HasGame(const Game* game) const override;
+		bool HasGames() const override;
 		bool HasEnoughCredits(const int& amt) const override;
 		int GetCredits() const override;
 		void SpendCredits(const int& amt) override;

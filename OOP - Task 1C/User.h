@@ -14,6 +14,7 @@ public:
 	virtual int GetLibrarySize() const = 0;
 	virtual bool HasGame(const Game*) const = 0;
 	virtual bool HasEnoughCredits(const int& amt) const = 0;
+	virtual bool HasGames() const = 0;
 	virtual int GetCredits() const = 0;
 	virtual void SpendCredits(const int& amt) = 0;
 	virtual void AddCredits(const int& amt) = 0;

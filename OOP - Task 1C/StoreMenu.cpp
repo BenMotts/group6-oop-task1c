@@ -12,16 +12,15 @@ StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> ga
 
 void StoreMenu::OutputOptions()
 {
-	if (!games.isEmpty() && searchView)
-		for (int i(0); i < games.length(); ++i)
-			Option(i + 1, games[i]->GetName() + " - Rating: " +  std::to_string(games[i]->getLikeRating()));
+if (!games.isEmpty() && searchView)
+		for (int i(0); i < games.length(); ++i) {
+				Option(i + 1, games[i]->GetName() + " - Rating: " + games[i]->PrintRating());
+		}
 	else if (searchView)
 		PrintLine("No Results Matching Your Criteria");
 	else
 		for (int i = 0; i < app->GetStore().GetGameCount(); i++)
-			Option(i + 1, app->GetStore().GetGame(i)->GetName());
-		/*else if (!games.length())
-	PrintLine("No Results Matching Your Criteria");*/
+			Option(i + 1, app->GetStore().GetGame(i)->GetName() + " - Rating: " + app->GetStore().GetGame(i)->PrintRating());
 
 	Line();
 
@@ -53,16 +52,16 @@ bool StoreMenu::HandleChoice(const char& choice)
 		}
 		return false;
 	}
-	//If player wants to order the games by rating
+	//If player wants to order the games by ratings
 	else if (choice == 'R') {
 		app->GetStore().OrderByRating();
-		StoreMenu("Ratings Order", app);
+		StoreMenu("STORE - Ratings Order", app);
 		return true;
 	}
 	//If player wants to order the games by name
 	else if (choice == 'N'){
 		app->GetStore().OrderByName();
-		StoreMenu("Name Order", app);
+		StoreMenu("STORE - Name Order", app);
 		return true;
 	}
 	else {
@@ -70,11 +69,9 @@ bool StoreMenu::HandleChoice(const char& choice)
 		int index = choice - '1';
 
 		if (!games.isEmpty() && index >= 0 && index < games.length()) {
-			Game* gamePointer = games[index];
-			PurchaseGameMenu(gamePointer, gamePointer->GetName(), app);
+			PurchaseGameMenu(games[index], games[index]->GetName(), app);
 		} else if (index >= 0 && index < app->GetStore().GetGameCount()) {
-			Game* gamePointer = app->GetStore().GetGame(index);
-			PurchaseGameMenu(gamePointer, gamePointer->GetName(), app);
+			PurchaseGameMenu(app->GetStore().GetGame(index), app->GetStore().GetGame(index)->GetName(), app);
 		}
 	}
 

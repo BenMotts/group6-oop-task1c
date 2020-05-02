@@ -2,7 +2,7 @@
 #include "Game.h"
 
 
-PurchaseGameMenu::PurchaseGameMenu(const Game* game, const std::string& title, Application* app)
+PurchaseGameMenu::PurchaseGameMenu(Game* game, const std::string& title, Application* app)
 	: game(game), Menu(Utils::ToUpperRec(title), app)
 {
 	Paint();
@@ -11,7 +11,8 @@ PurchaseGameMenu::PurchaseGameMenu(const Game* game, const std::string& title, A
 void PurchaseGameMenu::OutputOptions() {
 	PrintLine(game->GetDescription());
 	PrintLine("Cost: " + Utils::formatCredits(game->GetCost()));
-	PrintLine("Rating: " + game->getLikeRating());
+	PrintLine("Player Rating: " + game->PrintRating());
+	PrintLine("Age Rating: " + std::to_string(game->getAgeRating()));
 	if (!app->IsUserLoggedIn())
 		PrintLine("Log In To Purchase");
 	else if (app->GetCurrentUser()->HasGame(game))

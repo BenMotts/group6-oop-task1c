@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Admin.h"
 #include "DeleteUserMenu.h"
+#include "GameOptionsMenu.h"
 
 class ProfileMenu :
 	public Menu
