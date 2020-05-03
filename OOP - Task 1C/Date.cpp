@@ -2,13 +2,13 @@
 #include "Date.h"
 
 
-Date::Date() 
+Date::Date()
 {
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
 	this->day = ltm->tm_mday;
-	this->month = ltm->tm_mon;
-	this->year = ltm->tm_year;
+	this->month = ltm->tm_mon + 1;
+	this->year = ltm->tm_year + 1900;
 }
 
 Date::Date(int day, int month, int year) : day(day), month(month), year(year)
@@ -44,5 +44,23 @@ std::string Date::printDate() const {
 }
 
 bool Date::checkDate(const int& day, const int& month, const int& year) const {
-	return (day > 0 && day < 32 && month < 0 && month < 13);
+	return (day > 0 && day < 32 && month > 0 && month < 13);
+}
+
+bool Date::operator< (const Date& d2) const {
+	return ((d2.getYear() > year) || 
+		(d2.getYear() == year && d2.getMonth() > month) || 
+		(d2.getYear() == year && d2.getMonth() == month && d2.getDay() > day));
+}
+
+int Date::getDay() const {
+	return day;
+}
+
+int Date::getMonth() const {
+	return month;
+}
+
+int Date::getYear() const {
+	return year;
 }

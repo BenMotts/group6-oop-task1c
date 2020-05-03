@@ -28,8 +28,8 @@ void createHardcodedTestData(Application &app)
 	Player* u3 = new Player("Charlie", "password", Date());
 
 	// With some games in their library
-	u1->AddGame(new LibraryItem(Date(), app.GetStore().GetGame(7)));
-	u1->AddGame(new LibraryItem(Date(), app.GetStore().GetGame(1)));
+	u1->AddGame(new LibraryItem(Date(14, 3, 2020), app.GetStore().GetGame(7)));
+	u1->AddGame(new LibraryItem(Date(22, 2, 2019), app.GetStore().GetGame(1)));
 	u2->AddGame(new LibraryItem(Date(), app.GetStore().GetGame(2)));
 	u2->AddGame(new LibraryItem(Date(), app.GetStore().GetGame(3)));
 	u3->AddGame(new LibraryItem(Date(), app.GetStore().GetGame(3)));

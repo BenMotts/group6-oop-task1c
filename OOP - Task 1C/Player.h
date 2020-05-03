@@ -1,7 +1,11 @@
 #pragma once
 
+#include <vector>
 #include <string>
+#include <algorithm>
+
 #include "User.h"
+#include "Utils.h"
 
 class Player : public User
 {
@@ -16,10 +20,12 @@ class Player : public User
 		int GetCredits() const override;
 		void SpendCredits(const int& amt) override;
 		void AddCredits(const int& amt) override;
+		void OrderGamesByDate() override;
+		void OrderGamesByName() override;
 
 		bool isPlaying(const Game* game);
 
 	private:
-		List<LibraryItem*> library;
+		std::vector<LibraryItem*> library;
 		int credits;
 };

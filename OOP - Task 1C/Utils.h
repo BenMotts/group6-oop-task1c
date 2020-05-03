@@ -4,6 +4,8 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include "Date.h"
+#include "LibraryItem.h"
 
 class Utils
 {
@@ -18,5 +20,9 @@ class Utils
 	static bool WithinRange(const int&, const int&, const int&);
 	static int RandomNumberGenerator(const int&, const int&);
 	static std::string formatTime(const int&);
-    // TODO: 2 versions of ToUpper
+	static bool IsDateBefore(const Date&, const Date&);
+	static bool PurchasedAfter(const LibraryItem*, const LibraryItem*);
+	static bool CompareLibraryItemNames(const LibraryItem*, const LibraryItem*);
+	static bool CompareGameRatings(const Game*, const Game*);
+	static bool CompareGameNames(const Game*, const Game*);
 };

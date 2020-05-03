@@ -14,7 +14,7 @@ void StoreMenu::OutputOptions()
 {
 	if (!games.isEmpty() && searchView)
 		for (int i(0); i < games.length(); ++i)
-			Option(i + 1, games[i]->GetName());
+			Option(i + 1, games[i]->GetName() + " - Rating: " +  std::to_string(games[i]->getLikeRating()));
 	else if (searchView)
 		PrintLine("No Results Matching Your Criteria");
 	else
@@ -25,17 +25,21 @@ void StoreMenu::OutputOptions()
 
 	Line();
 
+	Option('R', "Order By Player Rating");
+	Option('N', "Order By Name");
 	Option('S', "Search By Name");
-	Option('P', "Search By Price");
+	Option('P', "Search By Price Range");
 }
 
 bool StoreMenu::HandleChoice(const char& choice)
 {
+	// If player wants to search the store by name
 	if (choice == 'S') {
 		std::string searchText = Question("Search For");
 		StoreMenu("Search: " + searchText, app, app->GetStore().SearchTitle(searchText));
 		return true;
 	}
+	//If player wants to search the store by price
 	else if (choice == 'P') {
 		std::string lowerValueStr = Question("Enter Lower Limit");
 		if (Utils::isInteger(lowerValueStr) && std::stoi(lowerValueStr) >= 0) {
@@ -48,9 +52,21 @@ bool StoreMenu::HandleChoice(const char& choice)
 			}
 		}
 		return false;
-	} 
+	}
+	//If player wants to order the games by rating
+	else if (choice == 'R') {
+		app->GetStore().OrderByRating();
+		StoreMenu("Ratings Order", app);
+		return true;
+	}
+	//If player wants to order the games by name
+	else if (choice == 'N'){
+		app->GetStore().OrderByName();
+		StoreMenu("Name Order", app);
+		return true;
+	}
 	else {
-
+		//Player wants to view game information
 		int index = choice - '1';
 
 		if (!games.isEmpty() && index >= 0 && index < games.length()) {

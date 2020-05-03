@@ -18,6 +18,9 @@ void ProfileMenu::OutputOptions() {
 		for (int i(0); i < app->GetCurrentUser()->GetLibrarySize(); ++i) {
 			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: "  + app->GetCurrentUser()->GetLibraryItem(i)->GetTimePlayed());
 		}
+		Line();
+		Option('T', "Sort Games By Date Purchased");
+		Option('N', "Sort Games By Name");
 	}
 	if (dynamic_cast<Admin*>(app->GetCurrentUser())) {
 		PrintLine("Admin Tools");
@@ -55,6 +58,15 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		else if (choice == 'D') {
 			DeleteUserMenu("DELETE USER", app);
 		}
+	} 	else if (choice == 'T') {
+		app->GetCurrentUser()->OrderGamesByDate();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
+	}
+	else if (choice == 'N') {
+		app->GetCurrentUser()->OrderGamesByName();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
 	}
 	else {
 		int index = choice - '1';

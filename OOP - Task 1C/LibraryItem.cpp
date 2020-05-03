@@ -21,4 +21,7 @@ std::string LibraryItem::GetTimePlayed() const
 	return Utils::formatTime(minutesPlayed);
 }
 
+Date LibraryItem::getDatePurchased() const {
+	return purchased;
+}
 
