@@ -55,3 +55,7 @@ void Player::OrderGamesByDate() {
 void Player::OrderGamesByName() {
 	std::sort(library.begin(), library.end(), Utils::CompareLibraryItemNames);
 }
+
+bool Player::HasGames() const {
+	return !library.empty();
+}

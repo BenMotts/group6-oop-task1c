@@ -7,10 +7,17 @@
 class LibraryItem
 {
 	public:
-		LibraryItem(const Date&, const Game*);
+		LibraryItem(const Date&, Game*);
 		~LibraryItem();
-		Date getDatePurchased() const;
-		const Game* game;
+		const Date& getDatePurchased() const;
+		Game* game;
+		bool hasLiked() const;
+		bool hasDisliked() const;
+		void like();
+		void dislike();
+		std::string getName() const;
+		std::string getDesc() const;
+		std::string PrintRating() const;
 
 		void playGame();
 
@@ -18,5 +25,7 @@ class LibraryItem
 
 	private:
 		const Date purchased;
+		bool liked;
+		bool disliked;
 		int minutesPlayed;
 };

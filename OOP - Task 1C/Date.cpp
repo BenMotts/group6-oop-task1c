@@ -50,7 +50,8 @@ bool Date::checkDate(const int& day, const int& month, const int& year) const {
 bool Date::operator< (const Date& d2) const {
 	return ((d2.getYear() > year) || 
 		(d2.getYear() == year && d2.getMonth() > month) || 
-		(d2.getYear() == year && d2.getMonth() == month && d2.getDay() > day));
+		(d2.getYear() == year && d2.getMonth() == month && d2.getDay() > day) ||
+		d2.getYear() == year && d2.getMonth() == month && d2.getDay() == day);
 }
 
 int Date::getDay() const {

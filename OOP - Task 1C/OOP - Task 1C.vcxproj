@@ -152,6 +152,7 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="DeleteUserMenu.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOptionsMenu.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
     <ClCompile Include="LoginMenu.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="DeleteUserMenu.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOptionsMenu.h" />
     <ClInclude Include="LibraryItem.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="LoginMenu.h" />

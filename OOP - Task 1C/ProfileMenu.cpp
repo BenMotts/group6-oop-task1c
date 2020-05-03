@@ -11,7 +11,7 @@ void ProfileMenu::OutputOptions() {
 	PrintLine("Credits: " + Utils::formatCredits(app->GetCurrentUser()->GetCredits()));
 	Option('C', "Add Credits");
 
-	if (!app->GetCurrentUser()->GetLibrarySize())
+	if (!app->GetCurrentUser()->HasGames())
 		PrintLine("You have no games. Head to the store!");
 	else {
 		PrintLine("Play Games");
@@ -58,20 +58,22 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		else if (choice == 'D') {
 			DeleteUserMenu("DELETE USER", app);
 		}
-	} 	else if (choice == 'T') {
+  }
+	else if (choice == 'T' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByDate();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		Paint();
 		return true;
 	}
-	else if (choice == 'N') {
+	else if (choice == 'N' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByName();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		Paint();
 		return true;
 	}
 	else {
 		int index = choice - '1';
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
+			GameOptionsMenu(app->GetCurrentUser()->GetLibraryItem(index), app->GetCurrentUser()->GetLibraryItem(index)->getName(), app);
 			app->GetCurrentUser()->GetLibraryItem(index)->playGame();
 		}
 		return false;

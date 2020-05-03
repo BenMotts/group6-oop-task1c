@@ -10,10 +10,15 @@ class Game
 
 		const std::string& GetName() const;
 		const std::string& GetDescription() const;
+		std::string PrintRating() const;
 		int GetCost() const;
 		int getLikeRating() const;
+		int getAgeRating() const;
 		void likeGame();
 		void dislikeGame();
+		void removeLike();
+		void removeDislike();
+
 	private:
 		std::string name;
 		std::string description;
