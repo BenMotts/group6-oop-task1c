@@ -4,6 +4,7 @@
 #include "DeleteUserMenu.h"
 #include "GameOptionsMenu.h"
 
+//UI Class for user menu (Can play games, admin functions, etc)
 class ProfileMenu :
 	public Menu
 {

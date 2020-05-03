@@ -11,9 +11,11 @@ GameOptionsMenu::GameOptionsMenu(LibraryItem* game, const std::string& title, Ap
 
 void GameOptionsMenu::OutputOptions() {
 	PrintLine(game->getDesc());
+	PrintLine("Total Play Time: " + game->GetTimePlayed());
 	PrintLine("Purchased: " + game->getDatePurchased().printDate());
 	PrintLine("Rating: " + game->PrintRating());
-	//PLAY GAME OPTION HERE
+	Line();
+	Option('P', "Play Game");
 	if (game->hasLiked() || game->hasDisliked())
 		if (game->hasLiked()) {
 			PrintLine("You have liked this game. Changed your mind?");
@@ -24,6 +26,7 @@ void GameOptionsMenu::OutputOptions() {
 			Option('L', "Like");
 		}
 	else {
+		Line();
 		Option('L', "like");
 		Option('D', "Dislike");
 	}
@@ -31,6 +34,11 @@ void GameOptionsMenu::OutputOptions() {
 
 bool GameOptionsMenu::HandleChoice(const char& choice) {
 	//IF CHOICE == P, PLAY GAME HERE
+	if (choice == 'P') {
+		game->playGame();
+		Paint();
+		return true;
+	}
 	if (choice == 'D') {
 		game->dislike();
 		Paint();

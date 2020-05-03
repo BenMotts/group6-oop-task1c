@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Admin.h"
 
+// Option menu for deleting a particular user (Admin availability only!)
 class DeleteUserMenu : public Menu
 {
 public:

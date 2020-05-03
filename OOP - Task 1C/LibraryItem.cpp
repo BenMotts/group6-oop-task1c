@@ -1,5 +1,5 @@
 #include "LibraryItem.h"
-
+#include "Utils.h"
 
 LibraryItem::LibraryItem(const Date& date, Game* game)
 	: purchased(date), game(game), minutesPlayed(0)
@@ -67,7 +67,6 @@ std::string LibraryItem::GetTimePlayed() const
 	return Utils::formatTime(minutesPlayed);
 }
 
-Date LibraryItem::getDatePurchased() const {
-	return purchased;
+bool LibraryItem::isGame(const Game* cmp) const {
+	return game == cmp;
 }
-

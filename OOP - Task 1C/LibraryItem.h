@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Utils.h"
 #include "Game.h"
 #include "Date.h"
 
@@ -10,8 +9,8 @@ class LibraryItem
 		LibraryItem(const Date&, Game*);
 		~LibraryItem();
 		const Date& getDatePurchased() const;
-		Game* game;
 		bool hasLiked() const;
+		bool isGame(const Game*) const;
 		bool hasDisliked() const;
 		void like();
 		void dislike();
@@ -28,4 +27,5 @@ class LibraryItem
 		bool liked;
 		bool disliked;
 		int minutesPlayed;
+		Game* game;
 };

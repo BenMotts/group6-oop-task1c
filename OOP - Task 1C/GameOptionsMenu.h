@@ -1,6 +1,8 @@
 #pragma once
 #include "Menu.h"
 
+
+// UI Class for user interaction options when selecting a game on profile page
 class GameOptionsMenu : public Menu
 {
 public:

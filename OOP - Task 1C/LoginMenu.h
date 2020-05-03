@@ -1,6 +1,7 @@
 #pragma once
 #include "Menu.h"
 
+//UI class for logging in a user
 class LoginMenu : public Menu
 {
 public:

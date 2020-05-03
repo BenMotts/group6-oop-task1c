@@ -5,6 +5,7 @@
 #include "LoginMenu.h"
 #include "ProfileMenu.h"
 
+//UI Class for main menu (Store, login/view profile)
 class MainMenu : public Menu
 {
 public:

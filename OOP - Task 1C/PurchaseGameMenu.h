@@ -1,6 +1,7 @@
 #pragma once
 #include "Menu.h"
 
+//UI class to purchase a game
 class PurchaseGameMenu : public Menu
 {
 public:

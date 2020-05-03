@@ -55,13 +55,13 @@ bool StoreMenu::HandleChoice(const char& choice)
 	//If player wants to order the games by ratings
 	else if (choice == 'R') {
 		app->GetStore().OrderByRating();
-		StoreMenu("STORE - Ratings Order", app);
+		Paint();
 		return true;
 	}
 	//If player wants to order the games by name
 	else if (choice == 'N'){
 		app->GetStore().OrderByName();
-		StoreMenu("STORE - Name Order", app);
+		Paint();
 		return true;
 	}
 	else {
@@ -74,6 +74,5 @@ bool StoreMenu::HandleChoice(const char& choice)
 			PurchaseGameMenu(app->GetStore().GetGame(index), app->GetStore().GetGame(index)->GetName(), app);
 		}
 	}
-
 	return false;
 }

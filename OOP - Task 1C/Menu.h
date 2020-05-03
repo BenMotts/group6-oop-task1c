@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 
+// Base class for UI pages
 class Menu
 {
 public:

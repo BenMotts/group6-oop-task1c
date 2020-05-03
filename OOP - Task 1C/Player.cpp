@@ -19,7 +19,7 @@ LibraryItem* Player::GetLibraryItem(const int& index) const {
 
 bool Player::HasGame(const Game* game) const {
 	for (int i(0); i < library.size(); ++i)
-		if (library[i]->game == game)
+		if (library[i]->isGame(game))
 			return true;
 	return false;
 }

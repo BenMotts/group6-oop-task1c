@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+//UI Class for the entire store (Ability to search/order games)
 class StoreMenu
 	: public Menu
 {

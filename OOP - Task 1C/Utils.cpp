@@ -86,7 +86,7 @@ bool Utils::PurchasedAfter(const LibraryItem* l1 , const LibraryItem* l2) {
 }
 
 bool Utils::CompareLibraryItemNames(const LibraryItem* l1, const LibraryItem* l2) {
-	return CompareGameNames(l1->game, l2->game);
+	return l1->getName() < l2->getName();
 }
 
 bool Utils::CompareGameRatings(const Game* g1, const Game* g2) {
@@ -96,3 +96,4 @@ bool Utils::CompareGameRatings(const Game* g1, const Game* g2) {
 bool Utils::CompareGameNames(const Game* g1, const Game* g2) {
 	return g1->GetName() < g2->GetName();
 }
+

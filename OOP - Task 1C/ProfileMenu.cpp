@@ -14,9 +14,9 @@ void ProfileMenu::OutputOptions() {
 	if (!app->GetCurrentUser()->HasGames())
 		PrintLine("You have no games. Head to the store!");
 	else {
-		PrintLine("Play Games");
+		PrintLine("Select Games");
 		for (int i(0); i < app->GetCurrentUser()->GetLibrarySize(); ++i) {
-			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: "  + app->GetCurrentUser()->GetLibraryItem(i)->GetTimePlayed());
+			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->getName() + ", Play Time: "  + app->GetCurrentUser()->GetLibraryItem(i)->GetTimePlayed());
 		}
 		Line();
 		Option('T', "Sort Games By Date Purchased");
@@ -74,7 +74,6 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
 			GameOptionsMenu(app->GetCurrentUser()->GetLibraryItem(index), app->GetCurrentUser()->GetLibraryItem(index)->getName(), app);
-			app->GetCurrentUser()->GetLibraryItem(index)->playGame();
 		}
 		return false;
 	}
