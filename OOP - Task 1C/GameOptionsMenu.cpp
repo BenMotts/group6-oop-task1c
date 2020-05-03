@@ -33,10 +33,12 @@ bool GameOptionsMenu::HandleChoice(const char& choice) {
 	//IF CHOICE == P, PLAY GAME HERE
 	if (choice == 'D') {
 		game->dislike();
+		Paint();
 		return true;
 	}
 	if (choice == 'L') {
 		game->like();
+		Paint();
 		return true;
 	}
 	return false;

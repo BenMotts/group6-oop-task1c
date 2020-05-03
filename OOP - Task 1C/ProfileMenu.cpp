@@ -45,12 +45,12 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 	}
 	else if (choice == 'T' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByDate();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		Paint();
 		return true;
 	}
 	else if (choice == 'N' && app->GetCurrentUser()->HasGames()) {
 		app->GetCurrentUser()->OrderGamesByName();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		Paint();
 		return true;
 	}
 	else if (dynamic_cast<Admin*>(app->GetCurrentUser()) && (choice == 'A' || choice == 'D')) {
