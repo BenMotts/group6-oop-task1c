@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Utils.h"
 #include "Game.h"
 #include "Date.h"
 
@@ -18,8 +19,13 @@ class LibraryItem
 		std::string getDesc() const;
 		std::string PrintRating() const;
 
+		void playGame();
+
+		std::string GetTimePlayed() const;
+
 	private:
 		const Date purchased;
 		bool liked;
 		bool disliked;
+		int minutesPlayed;
 };

@@ -18,6 +18,8 @@ class Utils
 	static std::string ToUpperRec(std::string);
 	static bool StartsWith(const std::string&, const std::string&);
 	static bool WithinRange(const int&, const int&, const int&);
+	static int RandomNumberGenerator(const int&, const int&);
+	static std::string formatTime(const int&);
 	static bool IsDateBefore(const Date&, const Date&);
 	static bool PurchasedAfter(const LibraryItem*, const LibraryItem*);
 	static bool CompareLibraryItemNames(const LibraryItem*, const LibraryItem*);

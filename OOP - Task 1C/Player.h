@@ -24,6 +24,8 @@ class Player : public User
 		void OrderGamesByDate() override;
 		void OrderGamesByName() override;
 
+		bool isPlaying(const Game* game);
+
 	private:
 		std::vector<LibraryItem*> library;
 		int credits;

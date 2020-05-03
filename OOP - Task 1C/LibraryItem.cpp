@@ -1,8 +1,10 @@
 #include "LibraryItem.h"
 
+
 LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game)
+	: purchased(date), game(game), minutesPlayed(0)
 {
+	
 }
 
 LibraryItem::~LibraryItem()
@@ -54,3 +56,18 @@ std::string LibraryItem::getDesc() const {
 std::string LibraryItem::PrintRating() const {
 	return game->PrintRating();
 }
+
+void LibraryItem::playGame()
+{
+	minutesPlayed += Utils::RandomNumberGenerator(10, 60);
+}
+
+std::string LibraryItem::GetTimePlayed() const
+{
+	return Utils::formatTime(minutesPlayed);
+}
+
+Date LibraryItem::getDatePurchased() const {
+	return purchased;
+}
+
