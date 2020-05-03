@@ -25,7 +25,7 @@ bool LibraryItem::hasDisliked() const {
 
 void LibraryItem::like() {
 	if (!liked) {
-		if (disliked = true) {
+		if (disliked == true) {
 			game->removeDislike();
 			disliked = false;
 		}
@@ -36,7 +36,7 @@ void LibraryItem::like() {
 
 void LibraryItem::dislike() {
 	if (!disliked) {
-		if (liked = true) {
+		if (liked == true) {
 			game->removeLike();
 			liked = false;
 		}
