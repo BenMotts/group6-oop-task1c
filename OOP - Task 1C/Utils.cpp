@@ -51,6 +51,32 @@ std::string Utils::ToUpperRec(std::string text) {
 	return (char)toupper(text[0]) + ToUpperRec(text.substr(1));
 }
 
+int Utils::RandomNumberGenerator(const int& lower, const int& upper) {
+
+	return rand() % upper + lower;
+
+}
+
+std::string Utils::formatTime(const int& number) {
+	std::stringstream os;
+
+	if (number < 60) {
+		os << std::to_string(number) << " minutes";
+	}
+	else if (number >= 60 && number <300) {
+		os << std::fixed << std::setprecision(1) << (number / 60.0f) << " hours";
+	}
+	else if(number>=300 && number<2880){
+		os << (number / 60) << " hours";
+	}
+	else if (number >= 2880) {
+		os << (number / 60 / 24) << " days";
+	}
+	
+
+	return os.str();
+}
+
 bool Utils::IsDateBefore(const Date& d1, const Date& d2) {
 	return d1 < d2;
 }

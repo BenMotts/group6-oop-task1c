@@ -16,7 +16,7 @@ void ProfileMenu::OutputOptions() {
 	else {
 		PrintLine("Play Games");
 		for (int i(0); i < app->GetCurrentUser()->GetLibrarySize(); ++i) {
-			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: 5 hours");
+			Option(i + 1, app->GetCurrentUser()->GetLibraryItem(i)->game->GetName() + ", Play Time: "  + app->GetCurrentUser()->GetLibraryItem(i)->GetTimePlayed());
 		}
 		Line();
 		Option('T', "Sort Games By Date Purchased");
@@ -43,17 +43,7 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 			return false;
 		}
 	}
-	else if (choice == 'T') {
-		app->GetCurrentUser()->OrderGamesByDate();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
-		return true;
-	}
-	else if (choice == 'N') {
-		app->GetCurrentUser()->OrderGamesByName();
-		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
-		return true;
-	}
-	else if (dynamic_cast<Admin*>(app->GetCurrentUser()) && (choice == 'A' || choice == 'D')) {
+	else if (dynamic_cast<Admin*>(app->GetCurrentUser()) && (choice=='A' || choice == 'D')) {
 		if (choice == 'A') {
 			std::string newUsername = Question("Enter Username");
 			if (app->GetCurrentAccount()->usernameExists(newUsername) || !newUsername.size()) {
@@ -68,12 +58,21 @@ bool ProfileMenu::HandleChoice(const char& choice) {
 		else if (choice == 'D') {
 			DeleteUserMenu("DELETE USER", app);
 		}
+	} 	else if (choice == 'T') {
+		app->GetCurrentUser()->OrderGamesByDate();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
+	}
+	else if (choice == 'N') {
+		app->GetCurrentUser()->OrderGamesByName();
+		ProfileMenu("PROFILE: " + app->GetCurrentUser()->GetUsername(), app);
+		return true;
 	}
 	else {
 		int index = choice - '1';
 
 		if (index >= 0 && index < app->GetCurrentUser()->GetLibrarySize()) {
-			BlockingMessage("To be implemented, add time to game");
+			app->GetCurrentUser()->GetLibraryItem(index)->playGame();
 		}
 		return false;
 	}
