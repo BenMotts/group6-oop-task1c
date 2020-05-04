@@ -1,6 +1,6 @@
 
 #include "Date.h"
-
+#include <iomanip>
 
 Date::Date()
 {
@@ -40,11 +40,12 @@ bool Date::setDate(const int& day, const int& month, const int& year) {
 
 std::string Date::printDate() const {
 	std::ostringstream os;
-	os << day;
-	os << " - ";
-	os << month;
-	os << " - ";
-	os << year;
+	os <<std::setfill('0')<< std::setw(4)<<year;
+	os << "-";
+	os << std::setfill('0') << std::setw(2) << month;
+	os << "-";
+	os << std::setfill('0') << std::setw(2) << day;
+
 	return os.str();
 }
 
