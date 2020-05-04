@@ -89,12 +89,16 @@ bool StoreMenu::HandleChoice(const char& choice)
 	}
 	else if (choice == 'N') {
 		if (searchView) {
-			if (!games.isEmpty() && pageNum * MAX_GAMES < games.length())
+			if (!games.isEmpty() && pageNum * MAX_GAMES < games.length()) {
 				StoreMenu("STORE", app, games, pageNum + 1);
+				return true;
+			}
 		}
 		else {
-			if (pageNum * MAX_GAMES < app->GetStore().GetGameCount())
+			if (pageNum * MAX_GAMES < app->GetStore().GetGameCount()) {
 				StoreMenu("STORE", app, pageNum + 1);
+				return true;
+			}
 		}
 	}
 	else {

@@ -21,7 +21,7 @@ void createHardcodedTestData(Application &app)
 	app.GetStore().AddGame(new Game("Half Life 3", "It's never coming out.", 5999, 18));
 	app.GetStore().AddGame(new Game("NUVAVULT", "A game where 2D and 3D collide.", 299, 18));
 	app.GetStore().AddGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
-
+	
 	// Create some users
 	Player* u1 = new Admin("Alice", "password", Date());
 	Player* u2 = new Player("Bob", "password",  Date());
