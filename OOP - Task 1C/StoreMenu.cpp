@@ -23,7 +23,8 @@ if (!games.isEmpty() && searchView)
 			Option(i + 1, app->GetStore().GetGame(i)->GetName() + " - Rating: " + app->GetStore().GetGame(i)->PrintRating());
 
 	Line();
-
+	PrintLine("PAGE 1 / 2");
+	Option('N', "Next Page");
 	Option('R', "Order By Player Rating");
 	Option('N', "Order By Name");
 	Option('S', "Search By Name");
