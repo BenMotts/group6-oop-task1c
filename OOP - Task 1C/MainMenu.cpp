@@ -32,7 +32,7 @@ bool MainMenu::HandleChoice(const char& choice)
 	{
 	case 'S':
 	{
-		StoreMenu("STORE", app);
+		StoreMenu("STORE", app, 1);
 	} break;
 	case 'L':
 	{
