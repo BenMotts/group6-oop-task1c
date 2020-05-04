@@ -34,12 +34,13 @@ void StoreMenu::OutputOptions()
 	}
 	Line();
 	if (searchView) {
-		if (!games.isEmpty())
+		if (!games.isEmpty()) {
 			PrintLine("PAGE " + std::to_string(pageNum) + " / " + std::to_string((int)std::ceil(games.length() / (float)MAX_GAMES))); {
-			if (pageNum != (int)std::ceil(games.length() / (float)MAX_GAMES))
-				Option('N', "Next Page");
-			else Line();
+				if (pageNum != (int)std::ceil(games.length() / (float)MAX_GAMES))
+					Option('N', "Next Page");
+			}
 		}
+		else Line();
 	}
 	else {
 		PrintLine("PAGE " + std::to_string(pageNum) + " / " + std::to_string((int)std::ceil(app->GetStore().GetGameCount() / (float)MAX_GAMES)));
@@ -91,13 +92,11 @@ bool StoreMenu::HandleChoice(const char& choice)
 		if (searchView) {
 			if (!games.isEmpty() && pageNum * MAX_GAMES < games.length()) {
 				StoreMenu("STORE", app, games, pageNum + 1);
-				return true;
 			}
 		}
 		else {
 			if (pageNum * MAX_GAMES < app->GetStore().GetGameCount()) {
 				StoreMenu("STORE", app, pageNum + 1);
-				return true;
 			}
 		}
 	}
