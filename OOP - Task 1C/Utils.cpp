@@ -97,3 +97,10 @@ bool Utils::CompareGameNames(const Game* g1, const Game* g2) {
 	return g1->GetName() < g2->GetName();
 }
 
+Date Utils::Stringtodate(const std::string &date)
+{
+	Date d1(date.substr(0, 4), date.substr(4, 5), date.substr(6, 7));
+
+	return d1;
+
+}
