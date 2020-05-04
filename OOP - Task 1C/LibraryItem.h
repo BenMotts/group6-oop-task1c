@@ -6,6 +6,7 @@
 class LibraryItem
 {
 	public:
+		LibraryItem(const Date&, Game*,bool,bool,int);
 		LibraryItem(const Date&, Game*);
 		~LibraryItem();
 		const Date& getDatePurchased() const;
@@ -17,6 +18,7 @@ class LibraryItem
 		std::string getName() const;
 		std::string getDesc() const;
 		std::string PrintRating() const;
+		std::string GetSavedData() const;
 
 		void playGame();
 

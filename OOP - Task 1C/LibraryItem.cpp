@@ -1,10 +1,15 @@
 #include "LibraryItem.h"
 #include "Utils.h"
 
-LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game), minutesPlayed(0)
+LibraryItem::LibraryItem(const Date& date, Game* game,bool liked,bool disliked,int minutesplayed)
+	: purchased(date), game(game), minutesPlayed(minutesplayed),liked(liked),disliked(disliked)
 {
 	
+}
+LibraryItem::LibraryItem(const Date& date, Game* game)
+	: purchased(date), game(game), minutesPlayed(0),liked(false),disliked(false)
+{
+
 }
 
 LibraryItem::~LibraryItem()
@@ -69,4 +74,13 @@ std::string LibraryItem::GetTimePlayed() const
 
 bool LibraryItem::isGame(const Game* cmp) const {
 	return game == cmp;
+}
+std::string LibraryItem::GetSavedData()const {
+	std::stringstream os;
+	os << game->GetGameID() + "\n";
+	os << purchased.printDate() + "\n";
+	os << minutesPlayed + "\n";
+	os << liked + "\n";
+	os << disliked + "\n";
+	return os.str();
 }

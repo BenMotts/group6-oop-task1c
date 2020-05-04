@@ -92,15 +92,18 @@ void Application::Load() {
 
 			if (line == "GAME")
 			{
-				std::string name, text;
-				std::string price, rating;
-				getline(file, line);
+				std::string name, text,price, rating, id, likes, dislikes;
+				
+				getline(file, id);
 				getline(file, name);
 				getline(file, text);
 				getline(file, price);
 				getline(file, rating);
+				getline(file, likes);
+				getline(file, dislikes);
 
-				store.AddGame(new Game(name, text, std::stoi(price), std::stoi(rating)));
+
+				store.AddGame(new Game(name, text, std::stoi(price), std::stoi(rating),std::stoi(id),std::stoi(likes),std::stoi(dislikes)));
 			}
 
 			if (line == "ACCOUNT")
@@ -124,12 +127,12 @@ void Application::Load() {
 				getline(file, name);
 				getline(file, password);
 				getline(file, credit);
-				getline(file, line);
+				
 
 
 
 
-				accounts[accounts.length() - 1]->AddUser(new Player(name, password, Utils::Stringtodate(date)));
+				accounts[accounts.length() - 1]->AddUser(new Player(name, password, Utils::Stringtodate(date), std::stoi(credit)));
 			}
 
 			if (line == "ACCOUNT-ADMIN")
@@ -139,20 +142,21 @@ void Application::Load() {
 				getline(file, name);
 				getline(file, password);
 				getline(file, credit);
-				getline(file, line);
-				accounts[accounts.length() - 1]->AddUser(new Admin(name, password, Utils::Stringtodate(date)));
+				accounts[accounts.length() - 1]->AddUser(new Admin(name, password, Utils::Stringtodate(date),std::stoi(credit)));
 
 			}
 
 
 			if (line == "LIBRARY-ITEM")
 			{
-				std::string number, date, minutes;
+				std::string number, date,liked,disliked, minutes;
 				getline(file, number);
 				getline(file, date);
 				getline(file, minutes);
+				getline(file, liked);
+				getline(file, disliked);
 
-				accounts[accounts.length() - 1]->GetUser(accounts[accounts.length() - 1]->GetUserCount() - 1)->AddGame(new LibraryItem(Utils::Stringtodate(date), store.GetGame(std::stoi(number))));
+				accounts[accounts.length() - 1]->GetUser(accounts[accounts.length() - 1]->GetUserCount() - 1)->AddGame(new LibraryItem(Utils::Stringtodate(date), store.GetGame(std::stoi(number)),std::stoi(liked),std::stoi(disliked),std::stoi(minutes)));
 			}
 		}
 		file.close();
@@ -160,5 +164,58 @@ void Application::Load() {
 
 }
 void Application::Save() {
+
+	std::ofstream file;
+	file.open("data.txt");
+
+	for (int i=0;i<store.GetGameCount();i++)
+	{
+		Game* game = store.GetGame(i);
+		/*getline(file, line);
+		getline(file, name);
+		getline(file, text);
+		getline(file, price);
+		getline(file, rating);
+		*/
+		file << "GAME\n";
+		file << i + "\n";
+		file << game->GetName() + "\n";
+		file << game->GetDescription() + "\n";
+		file << game->GetCost() + "\n";
+		file << game->getAgeRating() + "\n";
+
+
+	}
+
+	for (int i = 0; i < accounts.length(); i++)
+	{
+		Account* acc=accounts[i];
+		file << "ACCOUNT\n";
+		file << acc->GetSavedData();
+		
+		for (int y = 0; y < acc->GetUserCount();y++)
+		{
+			User* user=acc->GetUser(y);
+			if (dynamic_cast<Admin*>(user))
+			{
+				file << "ACCOUNT-ADMIN\n";
+			}
+			else
+			{
+				file << "ACCOUNT-PLAYER\n";
+			}
+			file << user->SavedData();
+			file << user->GetCredits()+"\n";
+			
+			for (int z = 0; z <user->GetLibrarySize(); z++)
+			{
+				file << "LIBRARY-ITEM\n";
+				file << user->GetLibraryItem(z)->GetSavedData();
+			}
+
+		}
+
+	}
+
 
 }
