@@ -36,8 +36,8 @@ Store& Application::GetStore()
 
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {
-	//currentAccount = accounts[0];
-	//return false;
+//currentAccount = accounts[0];
+//return false;
 	for (int i(0); i < accounts.length(); ++i) {
 		if (accounts[i]->CheckDetails(email, password)) {
 			currentAccount = accounts[i];
