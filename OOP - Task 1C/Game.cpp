@@ -68,3 +68,13 @@ int Game::GetGameID()const {
 	
 	return GameID;
 }
+std::string Game::GetSaveData() const {
+	std::stringstream os;
+	os << name + "\n";
+	os << description + "\n";
+	os << std::to_string(cost) + "\n";
+	os << std::to_string(ageRating) + "\n";
+	os << std::to_string(likes) + "\n";
+	os << std::to_string(dislikes) + "\n";
+	return os.str();
+}

@@ -14,11 +14,11 @@ const bool User::CheckDetails(const std::string& username, const std::string& pa
 	return username == this->username && password == this->password;
 }
 
-std::string User::SavedData()const {
+std::string User::GetSaveData()const {
 	std::stringstream  os;
 
 	os << created.printDate() + "\n";
-	os <<username + "\n";
+	os << username + "\n";
 	os << password+"\n";
 	
 

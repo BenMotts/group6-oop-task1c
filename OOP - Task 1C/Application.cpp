@@ -80,15 +80,12 @@ int Application::GetAccountCount() const {
 void Application::Load() {
 	std::ifstream file;
 	file.open("data.txt", std::ifstream::in);
-	std::string line;
-	getline(file, line);
 
 	if (file.is_open()) {
 		std::string line;
 
 		while (getline(file, line))
 		{
-
 
 			if (line == "GAME")
 			{
@@ -113,24 +110,16 @@ void Application::Load() {
 				getline(file, email);
 				getline(file, password);
 
-
-
-
 				AddAccount(new Account(email, password, Utils::Stringtodate(date)));
 			}
 			if (line == "ACCOUNT-PLAYER")
 			{
-
 
 				std::string date, name, password, credit;
 				getline(file, date);
 				getline(file, name);
 				getline(file, password);
 				getline(file, credit);
-				
-
-
-
 
 				accounts[accounts.length() - 1]->AddUser(new Player(name, password, Utils::Stringtodate(date), std::stoi(credit)));
 			}
@@ -156,6 +145,7 @@ void Application::Load() {
 				getline(file, liked);
 				getline(file, disliked);
 
+
 				accounts[accounts.length() - 1]->GetUser(accounts[accounts.length() - 1]->GetUserCount() - 1)->AddGame(new LibraryItem(Utils::Stringtodate(date), store.GetGame(std::stoi(number)),std::stoi(liked),std::stoi(disliked),std::stoi(minutes)));
 			}
 		}
@@ -166,33 +156,26 @@ void Application::Load() {
 void Application::Save() {
 
 	std::ofstream file;
-	file.open("data.txt");
-
+	file.open("data.txt", std::ofstream::out);
+	
+	//Save all games first
 	for (int i=0;i<store.GetGameCount();i++)
 	{
-		Game* game = store.GetGame(i);
-		/*getline(file, line);
-		getline(file, name);
-		getline(file, text);
-		getline(file, price);
-		getline(file, rating);
-		*/
 		file << "GAME\n";
-		file << i + "\n";
-		file << game->GetName() + "\n";
-		file << game->GetDescription() + "\n";
-		file << game->GetCost() + "\n";
-		file << game->getAgeRating() + "\n";
-
-
+		file << std::to_string(i) + "\n"
+			
+			;
+		file << store.GetGame(i)->GetSaveData();
 	}
 
+	//Save all accounts
 	for (int i = 0; i < accounts.length(); i++)
 	{
 		Account* acc=accounts[i];
 		file << "ACCOUNT\n";
-		file << acc->GetSavedData();
+		file << acc->GetSaveData();
 		
+		//Save each user within account
 		for (int y = 0; y < acc->GetUserCount();y++)
 		{
 			User* user=acc->GetUser(y);
@@ -204,13 +187,14 @@ void Application::Save() {
 			{
 				file << "ACCOUNT-PLAYER\n";
 			}
-			file << user->SavedData();
-			file << user->GetCredits()+"\n";
+			file << user->GetSaveData();
+			file << std::to_string(user->GetCredits())+"\n";
 			
+			//Save each library item for every user
 			for (int z = 0; z <user->GetLibrarySize(); z++)
 			{
 				file << "LIBRARY-ITEM\n";
-				file << user->GetLibraryItem(z)->GetSavedData();
+				file << user->GetLibraryItem(z)->GetSaveData();
 			}
 
 		}

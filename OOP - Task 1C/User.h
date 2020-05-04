@@ -23,7 +23,7 @@ public:
 	const bool CheckDetails(const std::string& username, const std::string& password) const;
 	virtual void OrderGamesByDate() = 0;
 	virtual void OrderGamesByName() = 0;
-	 std::string SavedData()const;
+	 std::string GetSaveData()const;
 
 private:
 	std::string username;

@@ -18,7 +18,7 @@ class LibraryItem
 		std::string getName() const;
 		std::string getDesc() const;
 		std::string PrintRating() const;
-		std::string GetSavedData() const;
+		std::string GetSaveData() const;
 
 		void playGame();
 

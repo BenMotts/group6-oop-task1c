@@ -41,7 +41,7 @@ int Account::GetUserCount() const {
 	return users.length();
 }
 
-std::string Account::GetSavedData() const{
+std::string Account::GetSaveData() const{
 	
 	std::stringstream  os;
 	os << created.printDate()+"\n";

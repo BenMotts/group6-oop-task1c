@@ -75,12 +75,12 @@ std::string LibraryItem::GetTimePlayed() const
 bool LibraryItem::isGame(const Game* cmp) const {
 	return game == cmp;
 }
-std::string LibraryItem::GetSavedData()const {
+std::string LibraryItem::GetSaveData()const {
 	std::stringstream os;
-	os << game->GetGameID() + "\n";
+	os << std::to_string(game->GetGameID()) + "\n";
 	os << purchased.printDate() + "\n";
-	os << minutesPlayed + "\n";
-	os << liked + "\n";
-	os << disliked + "\n";
+	os << std::to_string(minutesPlayed) + "\n";
+	os << std::to_string(liked) + "\n";
+	os << std::to_string(disliked) + "\n";
 	return os.str();
 }

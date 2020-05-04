@@ -16,7 +16,7 @@ class Account
 		User* GetUser(const int&);
 		int GetUserCount() const;
 		void DeleteUser(User* const);
-		std::string GetSavedData()const;
+		std::string GetSaveData()const;
 		
 	private:
 		List<User*> users;

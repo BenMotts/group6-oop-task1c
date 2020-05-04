@@ -1,6 +1,6 @@
 #pragma once
-
 #include <string>
+#include <sstream>
 
 class Game
 {
@@ -19,6 +19,7 @@ class Game
 		void removeLike();
 		void removeDislike();
 		int GetGameID()const;
+		std::string GetSaveData() const;
 
 	private:
 		std::string name;
