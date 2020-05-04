@@ -11,8 +11,13 @@ Date::Date()
 	this->year = ltm->tm_year + 1900;
 }
 
-Date::Date(int day, int month, int year) : day(day), month(month), year(year)
+Date::Date(int day, int month, int year)
 {
+	if (checkDate(day, month, year)) {
+		this->day = day;
+		this->month = month;
+		this->year = year;
+	}
 }
 
 Date::~Date()
@@ -44,7 +49,25 @@ std::string Date::printDate() const {
 }
 
 bool Date::checkDate(const int& day, const int& month, const int& year) const {
-	return (day > 0 && day < 32 && month > 0 && month < 13);
+	if (month > 0 && month <= 12 && day > 0 && year > 1950 && year < 9999) {
+		switch (month) {
+		case 9:
+		case 4:
+		case 6:
+		case 11:
+			if (day > 30)
+				return false;
+			break;
+		case 2:
+			if (day > 29)
+				return false;
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
+	return false;
 }
 
 bool Date::operator< (const Date& d2) const {
