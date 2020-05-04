@@ -79,9 +79,7 @@ int Application::GetAccountCount() const {
 
 void Application::Load() {
 	std::ifstream file;
-	file.open("data.txt", std::ifstream::in);
-	std::string line;
-	getline(file, line);
+	file.open("data.txt");
 
 	if (file.is_open()) {
 		std::string line;
