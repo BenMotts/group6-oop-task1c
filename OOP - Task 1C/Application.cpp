@@ -162,9 +162,7 @@ void Application::Save() {
 	for (int i=0;i<store.GetGameCount();i++)
 	{
 		file << "GAME\n";
-		file << std::to_string(i) + "\n"
-			
-			;
+		file << std::to_string(i) + "\n";
 		file << store.GetGame(i)->GetSaveData();
 	}
 
