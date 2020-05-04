@@ -2,6 +2,7 @@
 
 #include "List.h"
 #include "Account.h"
+#include "Admin.h"
 #include "User.h"
 #include "Store.h"
 
@@ -25,6 +26,8 @@ class Application
 		void AddAccount(Account* const&);
 		void AddUser(Player* const&);
 		int GetAccountCount() const;
+		void Load();
+		void Save();
 	private:
 		Store store;
 		Account* currentAccount;

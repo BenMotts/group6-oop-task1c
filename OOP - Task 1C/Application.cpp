@@ -1,5 +1,5 @@
 #include "Application.h"
-
+#include <fstream>
 Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 {
 }
@@ -75,4 +75,88 @@ void Application::AddAccount(Account* const& acc) {
 
 int Application::GetAccountCount() const {
 	return accounts.length();
+}
+
+void Application::Load() {
+	std::ifstream file;
+	file.open("data.txt");
+
+	if (file.is_open()) {
+		std::string line;
+
+		while (getline(file, line))
+		{
+
+
+			if (line == "GAME")
+			{
+				std::string name, text;
+				std::string price, rating;
+				getline(file, line);
+				getline(file, name);
+				getline(file, text);
+				getline(file, price);
+				getline(file, rating);
+
+				store.AddGame(new Game(name, text, std::stoi(price), std::stoi(rating)));
+			}
+
+			if (line == "ACCOUNT")
+			{
+				std::string date, email, password;
+				getline(file, date);
+				getline(file, email);
+				getline(file, password);
+
+
+
+
+				AddAccount(new Account(email, password, Utils::Stringtodate(date)));
+			}
+			if (line == "ACCOUNT-PLAYER")
+			{
+
+
+				std::string date, name, password, credit;
+				getline(file, date);
+				getline(file, name);
+				getline(file, password);
+				getline(file, credit);
+				getline(file, line);
+
+
+
+
+				accounts[accounts.length() - 1]->AddUser(new Player(name, password, Utils::Stringtodate(date)));
+			}
+
+			if (line == "ACCOUNT-ADMIN")
+			{
+				std::string date, name, password, credit;
+				getline(file, date);
+				getline(file, name);
+				getline(file, password);
+				getline(file, credit);
+				getline(file, line);
+				accounts[accounts.length() - 1]->AddUser(new Admin(name, password, Utils::Stringtodate(date)));
+
+			}
+
+
+			if (line == "LIBRARY-ITEM")
+			{
+				std::string number, date, minutes;
+				getline(file, number);
+				getline(file, date);
+				getline(file, minutes);
+
+				accounts[accounts.length() - 1]->GetUser(accounts[accounts.length() - 1]->GetUserCount() - 1)->AddGame(new LibraryItem(Utils::Stringtodate(date), store.GetGame(std::stoi(number))));
+			}
+		}
+		file.close();
+	}
+
+}
+void Application::Save() {
+
 }
