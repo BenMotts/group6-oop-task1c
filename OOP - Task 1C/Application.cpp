@@ -79,14 +79,12 @@ int Application::GetAccountCount() const {
 
 void Application::Load() {
 	std::ifstream file;
-	file.open("data.txt");
-
+	file.open("data.txt", std::ifstream::in);
+	std::string line;
+	getline(file, line);
 
 	if (file.is_open()) {
 		std::string line;
-
-
-
 
 		while (getline(file, line))
 		{
@@ -156,13 +154,10 @@ void Application::Load() {
 
 				accounts[accounts.length() - 1]->GetUser(accounts[accounts.length() - 1]->GetUserCount() - 1)->AddGame(new LibraryItem(Utils::Stringtodate(date), store.GetGame(std::stoi(number))));
 			}
-
-
-
-
-
 		}
+		file.close();
 	}
+
 }
 void Application::Save() {
 

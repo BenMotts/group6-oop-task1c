@@ -48,8 +48,8 @@ void main()
 {
 	// TODO: Remove call to dummy data, instead use Load and Save
 	Application app;
-	createHardcodedTestData(app);
-
+	//createHardcodedTestData(app);
+	app.Load();
 	// TODO: app.Load();
 
 	//mainMenu(); // TODO: replace with proper menu system
