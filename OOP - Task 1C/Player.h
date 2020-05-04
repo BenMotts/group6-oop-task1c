@@ -10,6 +10,7 @@
 class Player : public User
 {
 	public:
+		Player(const std::string&, const std::string&, const Date&,int );
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
 		void AddGame(LibraryItem*) override;
@@ -23,6 +24,7 @@ class Player : public User
 		void AddCredits(const int& amt) override;
 		void OrderGamesByDate() override;
 		void OrderGamesByName() override;
+		
 
 		bool isPlaying(const Game* game);
 

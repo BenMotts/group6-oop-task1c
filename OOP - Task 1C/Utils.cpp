@@ -99,6 +99,5 @@ bool Utils::CompareGameNames(const Game* g1, const Game* g2) {
 
 Date Utils::Stringtodate(const std::string &date)
 {
-	Date d1(std::stoi(date.substr(0, 4)), std::stoi(date.substr(5, 2)), std::stoi(date.substr(8, 2)));
-	return d1;
+	return Date(std::stoi(date.substr(8, 2)), std::stoi(date.substr(5, 2)), std::stoi(date.substr(0, 4)));
 }

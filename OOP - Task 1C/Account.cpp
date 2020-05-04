@@ -40,3 +40,14 @@ bool Account::CheckDetails(const std::string& email, const std::string& password
 int Account::GetUserCount() const {
 	return users.length();
 }
+
+std::string Account::GetSaveData() const{
+	
+	std::stringstream  os;
+	os << created.printDate()+"\n";
+	os<< email+"\n";
+	os << password + "\n";
+
+	return os.str();
+
+}

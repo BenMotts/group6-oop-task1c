@@ -1,7 +1,7 @@
 #include "Game.h"
 
-Game::Game(const std::string& name, const std::string& desc, int cost, int rating)
-	: name(name), description(desc), cost(cost), ageRating(rating), likes(0), dislikes(0)
+Game::Game(const std::string& name, const std::string& desc, int cost, int rating,const int& GameID,int likes,int dislikes)
+	: name(name), description(desc), cost(cost), ageRating(rating),GameID(GameID), likes(likes), dislikes(dislikes)
 {
 }
 
@@ -63,4 +63,18 @@ std::string Game::PrintRating() const {
 	if (dislikes == 0 && likes)
 		return "100%";
 	return std::to_string((100 / (likes + dislikes)) * likes) + '%';
+}
+int Game::GetGameID()const {
+	
+	return GameID;
+}
+std::string Game::GetSaveData() const {
+	std::stringstream os;
+	os << name + "\n";
+	os << description + "\n";
+	os << std::to_string(cost) + "\n";
+	os << std::to_string(ageRating) + "\n";
+	os << std::to_string(likes) + "\n";
+	os << std::to_string(dislikes) + "\n";
+	return os.str();
 }

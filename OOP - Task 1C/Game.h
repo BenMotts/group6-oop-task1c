@@ -1,11 +1,11 @@
 #pragma once
-
 #include <string>
+#include <sstream>
 
 class Game
 {
 	public:
-		Game(const std::string&, const std::string&, int, int);
+		Game(const std::string&, const std::string&, int, int,const int&,int,int);
 		~Game();
 
 		const std::string& GetName() const;
@@ -18,6 +18,8 @@ class Game
 		void dislikeGame();
 		void removeLike();
 		void removeDislike();
+		int GetGameID()const;
+		std::string GetSaveData() const;
 
 	private:
 		std::string name;
@@ -26,4 +28,6 @@ class Game
 		int ageRating;
 		int likes;
 		int dislikes;
+		int GameID;
+		
 };
